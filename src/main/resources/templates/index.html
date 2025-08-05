@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/input.css}">
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <link rel="icon" type="image/png" href="/images/logo_darkbg.png" alt="">
+    <title>HangOutHub</title>
+</head>
+
+<body>
+    <!-- NAVBAR STARTS -->
+    <nav class="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <div class="flex items-center">
+                <img src="images/logo_darkbg.png" class="w-14 h-14 -m-3" alt="">
+                <h1 class="text-2xl font-bold">angOutHub</h1>
+            </div>
+            <div>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-gray-200 space">Home</a></li>
+                    <li><a href="#about" class="hover:text-gray-200 space-x-6">About Us</a></li>
+                    <li><a href="#feedback" class="hover:text-gray-200 space-x-6">Feedback</a></li>
+                    <li><a href="/login" class="hover:text-gray-200 space-x-6">Login/SignUp</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- NAVBAR ENDS -->
+    <!-- MAIN STARTS -->
+    <div class="relative w-full h-[90vh] overflow-hidden">
+        <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+            <!-- Slide 1 -->
+            <div class="w-full h-full relative shrink-0">
+                <img src="/images/img1.jpg" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <h1 class="text-white text-4xl font-bold text-center">Just sit,sip & chill<br>We've got spots for that too</h1>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="w-full h-full relative shrink-0">
+                <img src="/images/img2.jpg" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <h1 class="text-white text-4xl font-bold text-center">Coffee,Friendz & Conversation<br>Let's find Your Vibe</h1>
+                </div>
+            </div>
+            <!-- Slider 3 -->
+             <div class="w-full h-full relative shrink-0">
+                <img src="/images/img3.jpg" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <h1 class="text-white text-4xl font-bold text-center">Sometimes, all you need is...<br>SOLO Escape<br>& here we r to guide...</h1>
+                </div>
+            </div>
+            
+            <!-- <img src="/images/img2.jpg" class="w-full h-full object-cover" />
+            <img src="/images/img3.jpg" class="w-full h-full object-cover" />
+            <img src="/images/img4.jpg" class="w-full h-full object-cover" /> -->
+        </div>
+
+        <!-- <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+            <h1 class="text-white text-4xl font-bold">Welcome to HangOutHub</h1>
+        </div> -->
+
+        <button onclick="prevSlide()"
+            class="absolute left-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full">&#8592;</button>
+        <button onclick="nextSlide()"
+            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full">&#8594;</button>
+
+    </div>
+
+    <!-- ABOUT SECTION STARTS -->
+    <div class="container mx-auto px-6" id="about">
+        <div class="text-center">
+            <h1 class="text-4xl mt-8 font-bold">ABOUT US</h1>
+            <p class="italic">"Healping you to plan the perfect hangout - based on your vibe"</p>
+        </div>
+        <div class="max-w-6xl mx-auto ">
+            <!-- Timeline Wrapper -->
+            <div class=" relative flex flex-col items-center mt-10 space-y-10">
+
+                <!-- Vertical Line -->
+                <div class="absolute w-1 bg-gray-300 h-full left-1/2 transform -translate-x-1/2"></div>
+
+                <!-- Timeline Item 1 (Left) -->
+                <div class="flex w-full justify-between items-center">
+                    <div class="w-5/12 bg-white shadow-lg p-4 rounded-md text-right">
+                        <h3 class="text-xl font-semibold">OUR MISSION</h3>
+                        <p>To offer users mood-based travel inspiration that aligns with their emotions and preferences,
+                            making every journey meaningful and personal</p>
+                    </div>
+                    <div class="z-10 flex items-center justify-center text-5xl h-12 w-12">🔹</div>
+
+                    <div class="w-5/12"></div>
+                </div>
+
+                <!-- Timeline Item 2 (Right) -->
+                <div class="flex w-full justify-between items-center">
+                    <div class="w-5/12"></div>
+                    <div class="z-10 flex items-center justify-center text-5xl h-12 w-12">🔹</div>
+                    <div class="w-5/12 bg-white shadow-lg p-4 rounded-md text-left">
+                        <h3 class="text-xl font-semibold">Why we exists?</h3>
+                        <p>We exist to bridge the gap between how someone feels and where they want to be. Instead of
+                            endless searches, we deliver handpicked destinations based on mood.</p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 (Left) -->
+                <div class="flex w-full justify-between items-center">
+                    <div class="w-5/12 bg-white shadow-lg p-4 rounded-md text-right">
+                        <h3 class="text-xl font-semibold">What makes us Unique?</h3>
+                        <p>Unlike traditional travel apps, we focus on emotions first. Our platform recommends places
+                            not just by location but by how a person is feeling — adventurous, relaxed, romantic, or
+                            joyful.</p>
+                    </div>
+                    <div class="z-10 flex items-center justify-center text-5xl h-12 w-12">🔹</div>
+                    <div class="w-5/12"></div>
+                </div>
+
+                <!-- Timeline Item 4 (Right) -->
+                <div class="flex w-full justify-between items-center">
+                    <div class="w-5/12"></div>
+                    <div class="z-10 flex items-center justify-center text-5xl h-12 w-12">🔹</div>
+                    <div class="w-5/12 bg-white shadow-lg p-4 rounded-md text-left">
+                        <h3 class="text-xl font-semibold">What's coming next?</h3>
+                        <p>We're working on integrating real-time suggestions using user preferences and open APIs —
+                            making travel recommendations even more intuitive and smart.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT SECTION ENDS -->
+
+    <hr>
+
+    <!-- FEEDBACK SECTION STARTS -->
+    <div id="feedback">
+        <div>
+            <div class="text-center">
+                <h1 class="text-4xl mt-8 font-bold">FEEDBACK</h1>
+                <p class="italic">From solo trip to squad hangouts - see what people loved about us</p>
+            </div>
+
+            <div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FEEDBACK SECTION ENDS -->
+
+    <!-- SCRIPTS LINKS -->
+    <script th:src="@{/js/script.js}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar.bg-body-tertiary{
+    background: linear-gradient(to right, #3e0e98, #a910d3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar.bg-body-tertiary img{
+    width: 50px;
+    height: 54px;
+}
+.container-fluid{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
