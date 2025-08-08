@@ -20,6 +20,32 @@ public class PageController {
     //     return username;
     // }
 
+    //Default Home page 
+    @GetMapping("/home")
+    public String showHomePage() {
+        return "index";
+    }
+    // Login page
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
+    // Sign-up page
+    @GetMapping("/signup")
+    public String showSignUpPage() {
+        return "signup";
+    }
+    // Forget-password page
+    @GetMapping("/forgetpswd")
+    public String showForgetPswdPage() {
+        return "forgetpswd";
+    }
+    //Feedback page
+    @GetMapping("/feedback")
+    public String showFeedbackPage(){
+        return "feedback";
+    }
+
     // Home page after login
     @GetMapping("/home-login")
     public String showHomePage(Model model, @ModelAttribute("username") String username) {
@@ -27,20 +53,6 @@ public class PageController {
         model.addAttribute("username", username);
         return "login-home";
     }
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
-    }
-    @GetMapping("/signup")
-    public String showSignUpPage() {
-        return "signup";
-    }
-    @GetMapping("/forgetpswd")
-    public String showForgetPswdPage() {
-        return "forgetpswd";
-    }
-    @GetMapping("/home")
-    public String showHomePage() {
-        return "index";
-    }
+    
+    
 }
