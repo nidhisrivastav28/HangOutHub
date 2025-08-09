@@ -694,6 +694,10 @@ video {
   height: 4rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .h-\[90vh\] {
   height: 90vh;
 }
