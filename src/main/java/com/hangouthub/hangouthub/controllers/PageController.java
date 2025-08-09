@@ -46,6 +46,11 @@ public class PageController {
         return "feedback";
     }
 
+    //Plan page
+    @GetMapping("/plan")
+    public String showPlanPage(){
+        return "plan";
+    }
     // Home page after login
     @GetMapping("/home-login")
     public String showHomePage(Model model, @ModelAttribute("username") String username) {

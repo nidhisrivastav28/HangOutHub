@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/input.css}">
+    <link rel="stylesheet" th:href="@{/css/output.css}">
+    <script src="/js/script.js"></script>
+    <title>Make a Plan</title>
+</head>
+
+<body>
+    <!-- NAVBAR STARTS -->
+    <nav class="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <div class="flex items-center">
+                <img src="images/logo_darkbg.png" class="w-14 h-14 -m-3" alt="">
+                <h1 class="text-2xl font-bold">angOutHub</h1>
+            </div>
+            <div>
+                <ul class="flex space-x-6">
+                    <li><a href="/home-login" class="hover:text-gray-200 space">Home</a></li>
+                    <li><a href="/plan" class="hover:text-gray-200 space-x-6">Make a Plan</a></li>
+                    <li><a href="/feedback" class="hover:text-gray-200 space-x-6">Feedback</a></li>
+                    <li><a href="#" class="hover:text-gray-200 space-x-6">Nidhi</a></li>
+                    <li class="relative">
+                        <button onclick="toggleDropdown()"
+                            class="flex items-center gap-1 hover:underline focus:outline-none">
+                            Profile
+                        </button>
+
+                        <ul id="dropdownMenu"
+                            class="absolute right-0 mt-2 w-40 bg-white text-black rounded shadow-lg hidden z-50">
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a></li>
+                            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- NAVBAR ENDS -->
+
+    <!-- MAIN STARTS -->
+    <div>
+        <div>
+            <div>
+                <p>Plan your next HangOut</p>
+                <p>Set your Vibe and Preferences below</p>
+                <form action="">
+                    <p>Start a New HangOut Plan</p>
+                    <div>
+                        <label for="Mood">Mood: </label>
+                        <input type="radio" name="mood" value="chill">Chill
+                        <input type="radio" name="mood" value="party">Party
+                        <input type="radio" name="mood" value="nature">Nature
+                        <input type="radio" name="mood" value="adventure">Adventure
+                        <input type="radio" name="mood" value="romantic">Romantic
+                        <input type="radio" name="mood" value="cultural">Cultural
+                        <input type="radio" name="mood" value="foodie">Foodie
+                        <input type="radio" name="mood" value="shopping">Shopping
+                    </div>
+
+                    <div class="flex">
+                        <label for="Location">Location:</label>
+                        <div>
+                            <!-- Dropdown -->
+                            <select id="areaDropdown" name="location">
+                                <option value="">Select Area</option>
+                                <option value="park_street">Park Street</option>
+                                <option value="salt_lake">Salt Lake</option>
+                                <option value="new_town">New Town</option>
+                                <option value="howrah">Howrah</option>
+                            </select>
+
+                            <!-- Use My Location -->
+                            <button type="button" id="useLocationBtn">
+                                Use My Location
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="Budget">Budget:</label>
+                        <select id="areaDropdown" name="budget">
+                            <option value="">Select Budget</option>
+                            <option value="Under Rs.200">Under Rs.200</option>
+                            <option value="Rs 200-Rs 500">Rs 200-Rs 500</option>
+                            <option value="Rs 500 - Rs 1000">Rs 500 - Rs 1000</option>
+                            <option value="Above Rs 1000">Above Rs 1000</option>
+                        </select>
+                    </div>
+
+                    <!-- FEATURES TO ADD LATER ON -->
+                    <!-- <div>
+                        <label>Indoor/Outdoor:</label>
+                        <input type="radio" name="place_type" value="indoor"> Indoor
+                        <input type="radio" name="place_type" value="outdoor"> Outdoor
+                    </div>
+
+                    <div>
+                        <label>Time of Day:</label>
+                        <input type="radio" name="time" value="morning"> 🌅
+                        <input type="radio" name="time" value="afternoon"> 🌞
+                        <input type="radio" name="time" value="evening"> 🌆
+                        <input type="radio" name="time" value="night"> 🌙
+                    </div>
+
+                    <div>
+                        <label>Hangout Style:</label>
+                        <input type="checkbox" name="style[]" value="games"> 🎲 Games
+                        <input type="checkbox" name="style[]" value="food"> 🍽 Food
+                        <input type="checkbox" name="style[]" value="music"> 🎤 Music
+                    </div>
+
+                    <div>
+                        <label>Duration:</label>
+                        <input type="radio" name="duration" value="short"> Short
+                        <input type="radio" name="duration" value="medium"> Medium
+                        <input type="radio" name="duration" value="long"> Long
+
+                    </div> -->
+
+                    <!-- Submit Button -->
+                    <button type="submit">🔍 Show Suitable Places</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- MAIN ENDS -->
+
+</body>
+
+</html>
