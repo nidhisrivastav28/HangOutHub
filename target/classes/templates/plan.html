@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/input.css}">
     <link rel="stylesheet" th:href="@{/css/output.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="/js/script.js"></script>
     <title>Make a Plan</title>
 </head>
@@ -44,47 +47,94 @@
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->
-    <div>
-        <div>
-            <div>
-                <p>Plan your next HangOut</p>
-                <p>Set your Vibe and Preferences below</p>
-                <form action="">
-                    <p>Start a New HangOut Plan</p>
-                    <div>
-                        <label for="Mood">Mood: </label>
-                        <input type="radio" name="mood" value="chill">Chill
-                        <input type="radio" name="mood" value="party">Party
-                        <input type="radio" name="mood" value="nature">Nature
-                        <input type="radio" name="mood" value="adventure">Adventure
-                        <input type="radio" name="mood" value="romantic">Romantic
-                        <input type="radio" name="mood" value="cultural">Cultural
-                        <input type="radio" name="mood" value="foodie">Foodie
-                        <input type="radio" name="mood" value="shopping">Shopping
+    <div >
+        <div class="flex flex-col md:flex-row h-auto md:h-screen justify-center items-center gap-8 px-8">
+
+            <!-- LEFT: Image -->
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="swiper mySwiper w-96 h-96 rounded-lg shadow-lg">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/images/adventure.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Adventure">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/couple.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Couple">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/foodie.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Foodie">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/games.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Games">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/shopping.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Shopping">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/images/party.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
+                        alt="Party">
+                        </div>
                     </div>
 
-                    <div class="flex">
-                        <label for="Location">Location:</label>
-                        <div>
-                            <!-- Dropdown -->
-                            <select id="areaDropdown" name="location">
+                    <div class="swiper-pagination"></div>
+
+                </div>
+                
+            
+            </div>
+
+            <!-- RIGHT: Form -->
+            <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 
+            transition-all duration-700 
+            hover:-translate-y-2 
+            hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] 
+            hover:border-4 hover:border-transparent 
+            hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100">
+                <form action="" class="px-6 py-4 rounded-lg space-y-6">
+                    <h2 class="text-2xl font-bold">Plan your next HangOut</h2>
+                    <p class="text-gray-600">Set your Vibe and Preferences below</p>
+
+                    <!-- Mood -->
+                    <fieldset>
+                        <legend class="font-semibold">Mood:</legend>
+                        <div class="flex flex-wrap gap-3 mt-2">
+                            <label><input type="radio" name="mood" value="chill" class="bg-light-blue"> Chill</label>
+                            <label><input type="radio" name="mood" value="party"> Party</label>
+                            <label><input type="radio" name="mood" value="nature"> Nature</label>
+                            <label><input type="radio" name="mood" value="adventure"> Adventure</label>
+                            <label><input type="radio" name="mood" value="romantic"> Romantic</label>
+                            <label><input type="radio" name="mood" value="cultural"> Cultural</label>
+                            <label><input type="radio" name="mood" value="foodie"> Foodie</label>
+                            <label><input type="radio" name="mood" value="shopping"> Shopping</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Location -->
+                    <div>
+                        <label for="locationDropdown" class="font-semibold">Location:</label>
+                        <div class="flex gap-3 mt-2">
+                            <select id="locationDropdown" name="location" class="border p-2 rounded w-full">
                                 <option value="">Select Area</option>
                                 <option value="park_street">Park Street</option>
                                 <option value="salt_lake">Salt Lake</option>
                                 <option value="new_town">New Town</option>
                                 <option value="howrah">Howrah</option>
                             </select>
-
-                            <!-- Use My Location -->
-                            <button type="button" id="useLocationBtn">
+                            <p class="mt-4">OR</p>
+                            <button type="button" id="useLocationBtn" class="bg-blue-500 text-white px-4 py-2 rounded">
                                 Use My Location
                             </button>
                         </div>
                     </div>
 
+                    <!-- Budget -->
                     <div>
-                        <label for="Budget">Budget:</label>
-                        <select id="areaDropdown" name="budget">
+                        <label for="budgetDropdown" class="font-semibold">Budget:</label>
+                        <select id="budgetDropdown" name="budget" class="border p-2 rounded w-full mt-2">
                             <option value="">Select Budget</option>
                             <option value="Under Rs.200">Under Rs.200</option>
                             <option value="Rs 200-Rs 500">Rs 200-Rs 500</option>
@@ -93,43 +143,30 @@
                         </select>
                     </div>
 
-                    <!-- FEATURES TO ADD LATER ON -->
-                    <!-- <div>
-                        <label>Indoor/Outdoor:</label>
-                        <input type="radio" name="place_type" value="indoor"> Indoor
-                        <input type="radio" name="place_type" value="outdoor"> Outdoor
-                    </div>
-
-                    <div>
-                        <label>Time of Day:</label>
-                        <input type="radio" name="time" value="morning"> 🌅
-                        <input type="radio" name="time" value="afternoon"> 🌞
-                        <input type="radio" name="time" value="evening"> 🌆
-                        <input type="radio" name="time" value="night"> 🌙
-                    </div>
-
-                    <div>
-                        <label>Hangout Style:</label>
-                        <input type="checkbox" name="style[]" value="games"> 🎲 Games
-                        <input type="checkbox" name="style[]" value="food"> 🍽 Food
-                        <input type="checkbox" name="style[]" value="music"> 🎤 Music
-                    </div>
-
-                    <div>
-                        <label>Duration:</label>
-                        <input type="radio" name="duration" value="short"> Short
-                        <input type="radio" name="duration" value="medium"> Medium
-                        <input type="radio" name="duration" value="long"> Long
-
-                    </div> -->
-
-                    <!-- Submit Button -->
-                    <button type="submit">🔍 Show Suitable Places</button>
+                    <!-- Submit -->
+                    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                        🔍 Show Suitable Places
+                    </button>
                 </form>
             </div>
         </div>
     </div>
+
     <!-- MAIN ENDS -->
+
+    <script>
+    var swiper = new Swiper(".mySwiper", {
+  loop: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  }
+});
+</script>
 
 </body>
 

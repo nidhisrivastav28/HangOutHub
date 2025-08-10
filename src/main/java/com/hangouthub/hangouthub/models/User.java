@@ -17,7 +17,7 @@ public class User {
     private String cpswd;
 	
 	public User() {	}
-	
+	 
 	public Long getId() {
 		return id;
 	}
