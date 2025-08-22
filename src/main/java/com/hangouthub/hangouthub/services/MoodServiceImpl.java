@@ -17,7 +17,7 @@ public class MoodServiceImpl implements MoodService{
 	public List<Mood> getAllMoods() {
 		return moodRepo.findAll();
 	}
-
+	
 	@Override
 	public Mood getMoodById(Long id) {
 		return moodRepo.findById(id).orElse(null);

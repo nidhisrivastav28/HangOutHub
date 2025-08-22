@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.services.MoodService;
 
-@Controller
+@Controller 
 @SessionAttributes("username")
 public class PageController {
     @Autowired
