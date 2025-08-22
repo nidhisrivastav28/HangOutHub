@@ -1,5 +1,7 @@
 package com.hangouthub.hangouthub.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.Model;
 
+import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.services.MoodService;
 
 @Controller
@@ -48,7 +51,9 @@ public class PageController {
 
     //Plan page
     @GetMapping("/plan")
-    public String showPlanPage(){
+    public String showPlanPage(Model model){
+        List<Mood> moods = moodService.getAllMoods();
+        model.addAttribute("moods", moods);
         return "plan";
     }
     // Home page after login

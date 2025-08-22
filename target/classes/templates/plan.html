@@ -102,14 +102,12 @@
                     <fieldset>
                         <legend class="font-semibold">Mood:</legend>
                         <div class="flex flex-wrap gap-3 mt-2">
-                            <label><input type="radio" name="mood" value="chill" class="bg-light-blue"> Chill</label>
-                            <label><input type="radio" name="mood" value="party"> Party</label>
-                            <label><input type="radio" name="mood" value="nature"> Nature</label>
-                            <label><input type="radio" name="mood" value="adventure"> Adventure</label>
-                            <label><input type="radio" name="mood" value="romantic"> Romantic</label>
-                            <label><input type="radio" name="mood" value="cultural"> Cultural</label>
-                            <label><input type="radio" name="mood" value="foodie"> Foodie</label>
-                            <label><input type="radio" name="mood" value="shopping"> Shopping</label>
+                            <th:block th:each="m : ${moods}"> 
+                                <label>
+                                    <input type="radio" name="mood" th:value="${m.id}"> 
+                                    <span th:text="${m.name}"></span>
+                                </label>
+                            </th:block>
                         </div>
                     </fieldset>
 
