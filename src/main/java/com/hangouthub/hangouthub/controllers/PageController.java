@@ -23,7 +23,6 @@ public class PageController {
     //     return username;
     // }
 
-    
     //Default Home page 
     @GetMapping("/home")
     public String showHomePage() {
