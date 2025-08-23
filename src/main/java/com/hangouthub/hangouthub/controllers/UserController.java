@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import com.hangouthub.hangouthub.models.User;
 import com.hangouthub.hangouthub.repository.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @SessionAttributes("username")
 public class UserController {
@@ -21,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String email, @RequestParam String pswd, Model model){
+    public String login(@RequestParam String email, @RequestParam String pswd, HttpSession session, Model model){
         User user= userRepo.findByEmail(email);
 
         if (user == null) {
@@ -33,7 +35,13 @@ public class UserController {
             return "login";
         }
 
-        model.addAttribute("username",user.getName());
+        session.setAttribute("username",user.getName());
         return "redirect:/home-login";
+    }
+    // Log-out
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/login";
     }
 }
