@@ -33,6 +33,7 @@ public class PageController {
     public String showLoginPage() {
         return "login";
     }
+    
     // Sign-up page
     @GetMapping("/signup")
     public String showSignUpPage() {
