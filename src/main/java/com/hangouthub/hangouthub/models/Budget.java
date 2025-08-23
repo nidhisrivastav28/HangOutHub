@@ -13,7 +13,7 @@ public class Budget {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "budget_range")
-    private Integer range;
+    private String range;
     private Float minprice;
     private Float maxprice;
 
@@ -22,7 +22,7 @@ public class Budget {
     public Long getId(){
         return id;
     }
-    public Integer getRange(){
+    public String getRange(){
         return range;
     }
     public Float getMinPrice(){
@@ -35,7 +35,7 @@ public class Budget {
     public void setId(Long id){
         this.id=id;
     }
-    public void setRange(Integer range){
+    public void setRange(String range){
         this.range=range;
     }
     public void setMinPrice(Float minprice){

@@ -22,3 +22,36 @@
   
   showSlide(currentIndex);
   setInterval(nextSlide,5000);
+
+// Plan Page image Slider
+  var swiper = new Swiper(".mySwiper", {
+  loop: true,
+  autoplay: {
+    delay: 1500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  }
+});
+
+// Current Location Data fetching
+var uLat;
+var uLong;
+
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition((position) =>{
+      uLat = position.coords.latitude;
+      uLong = position.coords.longitude;
+
+      document.getElementById("output").innerHTML = "Latitude=" +uLat+ "Longitude="+uLong; 
+    }, (error) => {
+      alert("Error fetching location: "+error.message);
+    });
+  }
+  else{
+    alert("Geolocation is not supported by this browser");
+  }
+}
