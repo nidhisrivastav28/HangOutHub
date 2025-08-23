@@ -12,7 +12,7 @@
 
 <body>
     <!-- NAVBAR STARTS -->
-     <div th:insert="fragments/navbar-after-login :: navbar-after-login"></div>
+     <div th:if="${session.username != null}" th:insert="fragments/navbar-after-login :: navbar-after-login"></div>
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->

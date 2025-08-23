@@ -5,15 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-// import org.springframework.web.bind.annotation.SessionAttributes;
+// import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.ui.Model;
 
 import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.services.MoodService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller 
-// @SessionAttributes("username")
+@SessionAttributes("username")
 public class PageController {
     @Autowired
     private MoodService moodService;
@@ -49,7 +51,6 @@ public class PageController {
     public String showFeedbackPage(){
         return "feedback";
     }
-
     //Plan page
     @GetMapping("/plan")
     public String showPlanPage(Model model){
@@ -59,9 +60,13 @@ public class PageController {
     }
     // Home page after login
     @GetMapping("/home-login")
-    public String showHomePage(Model model, @ModelAttribute("username") String username) {
-        model.addAttribute("moods", moodService.getAllMoods());
-        // model.addAttribute("username", username);
+    public String showHomePageAfterLogin(Model model,HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "redirect:/home";
+        }
+        // model.addAttribute("moods", moodService.getAllMoods());
+        model.addAttribute("username", username);
         return "login-home";
     }
     
