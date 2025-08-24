@@ -2,24 +2,35 @@ package com.hangouthub.hangouthub.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hangouthub.hangouthub.services.BudgetService;
-import com.hangouthub.hangouthub.services.LocationService;
-import com.hangouthub.hangouthub.services.MoodService;
+// import com.hangouthub.hangouthub.services.BudgetService;
+// import com.hangouthub.hangouthub.services.LocationService;
+// import com.hangouthub.hangouthub.services.MoodService;
 import com.hangouthub.hangouthub.services.PlaceService;
 
 @Controller
 public class PlaceController {
     @Autowired
-    private MoodService moodService;
-
-    @Autowired
-    private LocationService locationService;
-
-    @Autowired
-    private BudgetService budgetService;
-
-    @Autowired
     private PlaceService placeService;
-    
+
+    @GetMapping("/plans")
+    public String showForm(){
+        return "plans";
+    }
+    @PostMapping("/plans")
+    public String getPlaces(
+        @RequestParam("mood") Long mood, 
+        @RequestParam("location")Long location,
+        @RequestParam("budget") Long budget,
+        Model model){
+            
+            var places = placeService.getPlacesByFilters(mood,location,budget);
+            model.addAttribute("places",places);
+
+            return "plansResult";
+        }
 }

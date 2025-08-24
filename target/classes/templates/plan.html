@@ -122,6 +122,23 @@
             </div>
         </div>
     </div>
+    <div>
+        <table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Description</th>
+        <th>Image</th>
+    </tr>
+    <tr th:each="place : ${places}">
+        <td th:text="${place.placeName}"></td>
+        <td th:text="${place.address}"></td>
+        <td th:text="${place.description}"></td>
+        <td><img th:src="@{${place.images}}" alt="place image" width="100"/></td>
+    </tr>
+</table>
+
+    </div>
     <!-- MAIN ENDS -->
 
     <!-- FOOTER STARTS -->

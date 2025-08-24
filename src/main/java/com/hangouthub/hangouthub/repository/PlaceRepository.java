@@ -1,14 +1,17 @@
-// package com.hangouthub.hangouthub.repository;
+package com.hangouthub.hangouthub.repository;
 
-// import java.util.*;
+import java.util.*;
 
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// import com.hangouthub.hangouthub.models.Locations;
-// import com.hangouthub.hangouthub.models.Places;
+import com.hangouthub.hangouthub.models.Locations;
+import com.hangouthub.hangouthub.models.Places;
 
-// @Repository
-// public interface PlaceRepository extends JpaRepository<Places,Long> {
-//     List<Places> findByLocation(Locations location);
-// }
+@Repository
+public interface PlaceRepository extends JpaRepository<Places,Long> {
+    List<Places> findByLocation(Locations location);
+
+    List<Places> findByMoodIdAndLocationIdAndBudgetId(Long moodId, Long locationId, Long budgetId);
+
+}

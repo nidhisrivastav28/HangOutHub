@@ -8,5 +8,5 @@ public interface MoodService {
 	List<Mood> getAllMoods();
 	Mood getMoodById(Long id);
 	Mood saveMood(Mood mood);
-	void deleteMood(Long id);
+	void deleteMood(Long id); 
 }
