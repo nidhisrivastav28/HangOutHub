@@ -1,10 +1,11 @@
-package com.hangouthub.hangouthub.services;
+package com.hangouthub.hangouthub.services_implementation;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.repository.MoodRepo;
+import com.hangouthub.hangouthub.services.MoodService;
 
 @Service
 public class MoodServiceImpl implements MoodService{

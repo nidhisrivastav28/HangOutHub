@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.services.MoodService;
 
-import jakarta.servlet.http.HttpSession;
+// import jakarta.servlet.http.HttpSession;
 
 @Controller 
 @SessionAttributes("username")
@@ -30,17 +30,7 @@ public class PageController {
     public String showHomePage() {
         return "index";
     }
-    // Login page
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "login";
-    }
     
-    // Sign-up page
-    @GetMapping("/signup")
-    public String showSignUpPage() {
-        return "signup";
-    }
     // Forget-password page
     @GetMapping("/forgetpswd")
     public String showForgetPswdPage() {
@@ -58,17 +48,7 @@ public class PageController {
         model.addAttribute("moods", moods);
         return "plan";
     }
-    // Home page after login
-    @GetMapping("/home-login")
-    public String showHomePageAfterLogin(Model model,HttpSession session) {
-        String username = (String) session.getAttribute("username");
-        if (username == null) {
-            return "redirect:/home";
-        }
-        // model.addAttribute("moods", moodService.getAllMoods());
-        model.addAttribute("username", username);
-        return "login-home";
-    }
+    
     
     
 }

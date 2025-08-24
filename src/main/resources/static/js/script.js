@@ -1,3 +1,5 @@
+const { data } = require("autoprefixer");
+
  function toggleDropdown() {
     document.getElementById("dropdownMenu").classList.toggle("hidden");
   }
@@ -54,4 +56,27 @@ function getLocation(){
   else{
     alert("Geolocation is not supported by this browser");
   }
+}
+
+// Display Places
+function showPlaces(){
+  fetch('/searchByLocation',{
+    method: 'Post',
+    headers: {'Content-Type': 'application/json'},
+    body:JSON.stringify({ latitude: uLat,longitude:uLong })
+  })
+  .then(response => response.json())
+  .then(data => {
+    let html = '<table><tr><th>Name</th<th>Description</th><th>Budget</th></tr>';
+    data.forEach(place => {
+      html += `<tr>
+                  <td>${place.name}</td>
+                  <td>${place.description}</td>
+                  <td>${place.budget}</td>
+               </tr>`;
+    });
+    html += '</table>';
+    document.getElementById('results').innerHTML = html;
+  })
+  .catch(err => console.error(err));
 }

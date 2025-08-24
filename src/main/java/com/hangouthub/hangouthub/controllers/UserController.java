@@ -15,13 +15,21 @@ public class UserController {
     @Autowired
     private UserRepository userRepo;
 
-    
+    // Sign-up page
+    @GetMapping("/signup")
+    public String showSignUpPage() {
+        return "signup";
+    }
     @PostMapping("/signup")
     public String signup(User user) {
         userRepo.save(user);
         return "redirect:/login";
     }
-
+    // Login page
+    @GetMapping("/login")
+    public String showLoginPage() {
+        return "login";
+    }
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String pswd, HttpSession session, Model model){
         User user= userRepo.findByEmail(email);
@@ -37,6 +45,17 @@ public class UserController {
 
         session.setAttribute("username",user.getName());
         return "redirect:/home-login";
+    }
+    // Home page after login
+    @GetMapping("/home-login")
+    public String showHomePageAfterLogin(Model model,HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "login";
+        }
+        // model.addAttribute("moods", moodService.getAllMoods());
+        model.addAttribute("username", username);
+        return "login-home";
     }
     // Log-out
     @GetMapping("/logout")

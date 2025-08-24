@@ -23,10 +23,10 @@ public class RestAPIController {
 	public Mood getMoodById(@PathVariable Long id) {
 		return moodService.getMoodById(id);
 	}
-	@PostMapping
-	public Mood createMood(@RequestBody Mood mood) {
-		return moodService.saveMood(mood);
-	}
+	// @PostMapping
+	// public Mood createMood(@RequestBody Mood mood) {
+	// 	return moodService.saveMood(mood);
+	// }
 	@DeleteMapping("/{id}")
 	public void deleteMood(@PathVariable Long id) {
 		moodService.deleteMood(id);
