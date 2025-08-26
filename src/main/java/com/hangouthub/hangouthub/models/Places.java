@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Places {
@@ -13,9 +15,17 @@ public class Places {
     private Long id;
 
     private String placeName;     // Place ka naam
-    private Long moodId;          // Mood foreign key
-    private Long locationId;      // Location foreign key
-    private Long budgetId;        // Budget foreign key
+    @ManyToOne
+    @JoinColumn(name = "mood_id")
+    private Mood mood;          // Mood foreign key
+    
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Locations locations;      // Location foreign key
+    
+    @ManyToOne
+    @JoinColumn(name = "budget_id")
+    private Budget budget;        // Budget foreign key
     private String address;       // Address of place
     private String description;   // Description of place
     private String images;        // Image URL/path
@@ -24,12 +34,12 @@ public class Places {
     public Places() {}
 
     // Constructor with fields
-    public Places(String placeName, Long moodId, Long locationId, Long budgetId,
+    public Places(String placeName, Mood mood, Locations locations, Budget budget,
                   String address, String description, String images) {
         this.placeName = placeName;
-        this.moodId = moodId;
-        this.locationId = locationId;
-        this.budgetId = budgetId;
+        this.mood = mood;
+        this.locations = locations;
+        this.budget = budget;
         this.address = address;
         this.description = description;
         this.images = images;
@@ -44,16 +54,16 @@ public class Places {
         return placeName;
     }
 
-    public Long getMoodId() {
-        return moodId;
+    public Mood getMood() {
+        return mood;
     }
 
-    public Long getLocationId() {
-        return locationId;
+    public Locations getLocation() {
+        return locations;
     }
 
-    public Long getBudgetId() {
-        return budgetId;
+    public Budget getBudget() {
+        return budget;
     }
 
     public String getAddress() {
@@ -77,16 +87,16 @@ public class Places {
         this.placeName = placeName;
     }
 
-    public void setMoodId(Long moodId) {
-        this.moodId = moodId;
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 
-    public void setLocationId(Long locationId) {
-        this.locationId = locationId;
+    public void setLocation(Locations locations) {
+        this.locations = locations;
     }
 
-    public void setBudgetId(Long budgetId) {
-        this.budgetId = budgetId;
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     public void setAddress(String address) {

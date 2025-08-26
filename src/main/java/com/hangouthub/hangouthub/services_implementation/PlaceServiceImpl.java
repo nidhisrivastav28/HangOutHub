@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hangouthub.hangouthub.models.Budget;
+import com.hangouthub.hangouthub.models.Locations;
+import com.hangouthub.hangouthub.models.Mood;
 import com.hangouthub.hangouthub.models.Places;
+import com.hangouthub.hangouthub.repository.BudgetRepository;
+import com.hangouthub.hangouthub.repository.LocationRepository;
+import com.hangouthub.hangouthub.repository.MoodRepo;
 import com.hangouthub.hangouthub.repository.PlaceRepository;
 import com.hangouthub.hangouthub.services.PlaceService;
 
@@ -13,6 +19,15 @@ import com.hangouthub.hangouthub.services.PlaceService;
 public class PlaceServiceImpl implements PlaceService{
     @Autowired
     private PlaceRepository placeRepository;
+
+    @Autowired
+    private MoodRepo moodRepo;
+
+    @Autowired
+    private LocationRepository locationRepository;
+
+    @Autowired
+    private BudgetRepository budgetRepository;
 
     @Override
     public Places savePlace(Places place) {
@@ -23,9 +38,9 @@ public class PlaceServiceImpl implements PlaceService{
     public Places updatePlace(Long id, Places place) {
         Places existingPlace = placeRepository.findById(id).orElseThrow();
         existingPlace.setPlaceName(place.getPlaceName());
-        existingPlace.setMoodId(place.getMoodId());
-        existingPlace.setLocationId(place.getLocationId());
-        existingPlace.setBudgetId(place.getBudgetId());
+        existingPlace.setMood(place.getMood());
+        existingPlace.setLocation(place.getLocation());
+        existingPlace.setBudget(place.getBudget());
         existingPlace.setAddress(place.getAddress());
         existingPlace.setDescription(place.getDescription());
         existingPlace.setImages(place.getImages());
@@ -49,7 +64,11 @@ public class PlaceServiceImpl implements PlaceService{
 
     @Override
     public List<Places> getPlacesByFilters(Long moodId, Long locationId, Long budgetId) {
-        return placeRepository.findByMoodIdAndLocationIdAndBudgetId(moodId, locationId, budgetId);
+        Mood mood = moodRepo.findById(moodId).orElseThrow();
+        Locations locations = locationRepository.findById(locationId).orElseThrow();
+        Budget budget = budgetRepository.findById(budgetId).orElseThrow();
+        
+        return placeRepository.findByMoodAndLocationAndBudget(mood, locations, budget);
     }
     
 }

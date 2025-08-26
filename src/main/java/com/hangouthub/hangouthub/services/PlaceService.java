@@ -13,5 +13,6 @@ public interface PlaceService {
     Places getPlacesById(Long id);
 
     //for 3 filters at one go
-    List<Places> getPlacesByFilters(Long mood, Long location, Long budget);
+    List<Places> getPlacesByFilters(Long moodId, Long locationId, Long budgetId);
 }
+ 
