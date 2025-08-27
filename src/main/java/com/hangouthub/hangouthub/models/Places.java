@@ -6,8 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
+// using @Getter and @Setter for creating getter setter methods automatically
 @Entity
+@Getter
+@Setter
 public class Places {
 
     @Id
@@ -46,68 +51,68 @@ public class Places {
     }
 
     // Getters
-    public Long getId() {
-        return id;
-    }
-
-    public String getPlaceName() {
-        return placeName;
-    }
-
-    public Mood getMood() {
-        return mood;
-    }
-
-    public Locations getLocation() {
-        return locations;
-    }
-
-    public Budget getBudget() {
-        return budget;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getImages() {
-        return images;
-    }
-
-    // Setters
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName;
-    }
-
-    public void setMood(Mood mood) {
-        this.mood = mood;
-    }
-
-    public void setLocation(Locations locations) {
-        this.locations = locations;
-    }
-
-    public void setBudget(Budget budget) {
-        this.budget = budget;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public String getPlaceName() {
+//        return placeName;
+//    }
+//
+//    public Mood getMood() {
+//        return mood;
+//    }
+//
+//    public Locations getLocation() {
+//        return locations;
+//    }
+//
+//    public Budget getBudget() {
+//        return budget;
+//    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public String getImages() {
+//        return images;
+//    }
+//
+//    // Setters
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public void setPlaceName(String placeName) {
+//        this.placeName = placeName;
+//    }
+//
+//    public void setMood(Mood mood) {
+//        this.mood = mood;
+//    }
+//
+//    public void setLocation(Locations locations) {
+//        this.locations = locations;
+//    }
+//
+//    public void setBudget(Budget budget) {
+//        this.budget = budget;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public void setImages(String images) {
+//        this.images = images;
+//    }
 }

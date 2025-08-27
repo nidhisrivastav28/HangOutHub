@@ -13,10 +13,14 @@ import com.hangouthub.hangouthub.models.Places;
 
 @Repository
 public interface PlaceRepository extends JpaRepository<Places,Long> {
-    List<Places> findByLocation(Locations locations);
+    List<Places> findByLocations(Locations locations);
+    // same here findByLocation to findByLocations
+    // extra 's' for plural naming
 
-    // TODO: write the query to fetch data from db
+
     @Query("SELECT p FROM Places p WHERE p.mood = :mood AND p.locations = :locations AND p.budget = :budget")
-    List<Places> findByMoodAndLocationAndBudget(Mood mood, Locations locations, Budget budget);
+    List<Places> findByMoodAndLocationsAndBudget(Mood mood, Locations locations, Budget budget);
+    // same here findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
+    // extra 's' for plural naming
 
 }

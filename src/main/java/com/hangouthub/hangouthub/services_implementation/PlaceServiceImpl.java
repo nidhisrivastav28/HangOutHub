@@ -39,7 +39,7 @@ public class PlaceServiceImpl implements PlaceService{
         Places existingPlace = placeRepository.findById(id).orElseThrow();
         existingPlace.setPlaceName(place.getPlaceName());
         existingPlace.setMood(place.getMood());
-        existingPlace.setLocation(place.getLocation());
+        existingPlace.setLocations(place.getLocations());
         existingPlace.setBudget(place.getBudget());
         existingPlace.setAddress(place.getAddress());
         existingPlace.setDescription(place.getDescription());
@@ -68,7 +68,9 @@ public class PlaceServiceImpl implements PlaceService{
         Locations locations = locationRepository.findById(locationId).orElseThrow();
         Budget budget = budgetRepository.findById(budgetId).orElseThrow();
         
-        return placeRepository.findByMoodAndLocationAndBudget(mood, locations, budget);
+        return placeRepository.findByMoodAndLocationsAndBudget(mood, locations, budget);
+//      changed findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
+//      dekh ekta extra 's' ache naming e
     }
     
 }
