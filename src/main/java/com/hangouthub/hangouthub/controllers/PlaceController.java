@@ -24,11 +24,11 @@ public class PlaceController {
     @PostMapping("/plans")
     public String getPlaces(
         @RequestParam("mood") Long mood, 
-        @RequestParam("location")Long location,
+        @RequestParam("location")Long locations,
         @RequestParam("budget") Long budget,
         Model model){
             
-            var places = placeService.getPlacesByFilters(mood,location,budget);
+            var places = placeService.getPlacesByFilters(mood,locations,budget);
             model.addAttribute("places",places);
 
             return "plansResult";

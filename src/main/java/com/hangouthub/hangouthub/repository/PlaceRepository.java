@@ -16,7 +16,7 @@ public interface PlaceRepository extends JpaRepository<Places,Long> {
     List<Places> findByLocation(Locations locations);
 
     // TODO: write the query to fetch data from db
-    @Query("")
+    @Query("SELECT p FROM Places p WHERE p.mood = :mood AND p.locations = :locations AND p.budget = :budget")
     List<Places> findByMoodAndLocationAndBudget(Mood mood, Locations locations, Budget budget);
 
 }

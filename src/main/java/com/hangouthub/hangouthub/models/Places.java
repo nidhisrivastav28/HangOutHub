@@ -21,7 +21,7 @@ public class Places {
     
     @ManyToOne
     @JoinColumn(name = "location_id")
-    private Locations locations;      // Location foreign key
+    private Locations locations;      // Locations foreign key
     
     @ManyToOne
     @JoinColumn(name = "budget_id")
