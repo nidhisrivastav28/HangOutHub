@@ -65,7 +65,7 @@
             hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] 
             hover:border-4 hover:border-transparent 
             hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100">
-                <form action="" class="px-6 py-4 rounded-lg space-y-6">
+                <form th:action="@{/plans}" method="post" class="px-6 py-4 rounded-lg space-y-6">
                     <h2 class="text-2xl font-bold">Plan your next HangOut</h2>
                     <p class="text-gray-600">Set your Vibe and Preferences below</p>
 
@@ -104,10 +104,9 @@
                         <label for="budgetDropdown" class="font-semibold">Budget:</label>
                         <select id="budgetDropdown" name="budget" class="border p-2 rounded w-full mt-2">
                             <option value="">Select Budget</option>
-                            <option value="Under Rs.200">Under Rs.200</option>
-                            <option value="Rs 200-Rs 500">Rs 200-Rs 500</option>
-                            <option value="Rs 500 - Rs 1000">Rs 500 - Rs 1000</option>
-                            <option value="Above Rs 1000">Above Rs 1000</option>
+                            <th:block th:each="b : ${budgets}">
+                                <option th:value="$b.id" th:text="${b.range}"></option>
+                            </th:block>
                         </select>
                     </div>
 

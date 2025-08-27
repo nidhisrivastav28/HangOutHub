@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 // import com.hangouthub.hangouthub.services.BudgetService;
@@ -13,15 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hangouthub.hangouthub.services.PlaceService;
 
 @Controller
+@RequestMapping("/plan")
 public class PlaceController {
     @Autowired
     private PlaceService placeService;
 
-    @GetMapping("/plans")
+    @GetMapping
     public String showForm(){
-        return "plans";
+        return "plan";
     }
-    @PostMapping("/plans")
+    @PostMapping
     public String getPlaces(
         @RequestParam("mood") Long mood, 
         @RequestParam("location")Long locations,
@@ -31,6 +33,6 @@ public class PlaceController {
             var places = placeService.getPlacesByFilters(mood,locations,budget);
             model.addAttribute("places",places);
 
-            return "plansResult";
+            return "plan";
         }
 }

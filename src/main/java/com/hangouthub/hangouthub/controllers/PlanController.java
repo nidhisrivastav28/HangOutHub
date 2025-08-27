@@ -1,15 +1,18 @@
 // package com.hangouthub.hangouthub.controllers;
 
 // import java.lang.reflect.AccessFlag.Location;
-// import java.util.Map;
+// import java.util.*;
 
 // import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.web.bind.annotation.PostMapping;
 // import org.springframework.web.bind.annotation.RequestAttribute;
 // import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RestController;
 
+// import com.hangouthub.hangouthub.models.Places;
 // import com.hangouthub.hangouthub.repository.LocationRepository;
+// import com.hangouthub.hangouthub.repository.PlaceRepository;
 
 // @RestController
 // @RequestMapping("/plan")
@@ -20,8 +23,8 @@
 //     @Autowired
 //     private PlaceRepository placeRepo;
 
-//     @PostMapping("/searchByLocation")
-//     public List<Place> searchByLocation(@RequestBody Map<String, Double> payload){
+//     @PostMapping
+//     public List<Places> searchByLocations(@RequestBody Map<String, Double> payload){
 //         Double latitude = payload.get("latitude");
 //         Double longitude = payload.get("longitude");
         
@@ -31,7 +34,7 @@
 //             return new ArrayList<>();
 //         }
 
-//         return placeRepo.findByLocationId(loc.getId());
+//         return placeRepo.findByLocationsId(loc.getId());
 //     }
     
     
