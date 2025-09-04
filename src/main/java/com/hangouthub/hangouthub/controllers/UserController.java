@@ -46,6 +46,9 @@ public class UserController {
         session.setAttribute("username",user.getName());
         return "redirect:/home-login";
     }
+
+    // Forgot Password
+
     // Home page after login
     @GetMapping("/home-login")
     public String showHomePageAfterLogin(Model model,HttpSession session) {
