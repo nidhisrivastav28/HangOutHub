@@ -1,6 +1,6 @@
 // package com.hangouthub.hangouthub.controllers;
 
-// import java.lang.reflect.AccessFlag.Location;
+// import com.hangouthub.hangouthub.models.Locations;
 // import java.util.*;
 
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +28,14 @@
 //         Double latitude = payload.get("latitude");
 //         Double longitude = payload.get("longitude");
         
-//         Location loc = locationRepo.findByLatAndLong(latitude, longitude);
+//         Optional<Locations> loc = locationRepo.findByLatitudeAndLongitude(latitude, longitude);
 
-//         if (loc == null) {
+//         if (loc.isEmpty()) {
 //             return new ArrayList<>();
 //         }
 
-//         return placeRepo.findByLocationsId(loc.getId());
+//         Locations locOpt = loc.get();
+
+//         return placeRepo.findByLocations(locOpt);
 //     }
-    
-    
 // }
