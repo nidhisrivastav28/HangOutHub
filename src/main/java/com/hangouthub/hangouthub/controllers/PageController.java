@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 // import com.hangouthub.hangouthub.services.MoodService;
 
 // import jakarta.servlet.http.HttpSession;
-
+ 
 @Controller 
 @SessionAttributes("username")
 public class PageController {
