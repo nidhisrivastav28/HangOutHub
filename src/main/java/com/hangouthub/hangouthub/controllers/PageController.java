@@ -31,11 +31,7 @@ public class PageController {
         return "index";
     }
     
-    // Forget-password page
-    @GetMapping("/forgetpswd")
-    public String showForgetPswdPage() {
-        return "forgetpswd";
-    }
+    
     //Feedback page
     @GetMapping("/feedback")
     public String showFeedbackPage(){

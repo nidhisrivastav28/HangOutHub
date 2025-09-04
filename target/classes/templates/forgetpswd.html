@@ -15,30 +15,19 @@
                 <img src="images/logo_lightbg.png" class="h-16 w-26" alt="">
             </div>
             <h1 class="font-bold forcenter text-2xl">Forgotten Your Password?</h1>
-            <form class="mt-8 space-y-6" th:action="@{/login}" method="post">
+            <form class="mt-8 space-y-6" th:action="@{/pswdreset}" method="post">
                 <div class="rounded-md shadow-sm space-y-4">
                     <input
                         class="appearance-none rounded w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        type="email" name="email" placeholder="Enter your email">
-                    <input
-                        class="appearance-none rounded w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        type="password" name="pswd" placeholder="Enter password">
-                    <div>
-                       <a href="/forgetpswd" class="hover:text-indigo-500"> Forgot password?</a>
-                    </div>
+                        type="email" name="email" placeholder="Enter your registered email">
                     <button
                         class="w-full forcenter py-2 px-4 border border-transparent bg-indigo-600 text-white font-medium rounded-md transition hover:bg-indigo-700"
-                        type="submit">Sign in</button>
+                        type="submit">Reset Password</button>
                 </div>
                 <div>
                     <p th:if="${error}" th:text="${error}" style="color: red;"></p>
                 </div>
             </form> 
-
-            <div class="forcenter gap-1">
-                Not a Member?
-                <a href="/signup" class="text-indigo-600 hover:text-indigo-700 ">Sign Up now</a>
-            </div>
         </div>
     </div>
 </body>

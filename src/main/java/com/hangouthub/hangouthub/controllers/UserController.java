@@ -47,7 +47,11 @@ public class UserController {
         return "redirect:/home-login";
     }
 
-    // Forgot Password
+    // Forget-password page
+    @GetMapping("/pswdreset")
+    public String showForgetPswdPage() {
+        return "forgetpswd";
+    }
 
     // Home page after login
     @GetMapping("/home-login")
