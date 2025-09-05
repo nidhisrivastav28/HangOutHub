@@ -26,10 +26,10 @@ public class PageController {
     private FeedbackService feedbackService;
     // private MoodService moodService;
 
-    // @ModelAttribute("username")
-    // public String getUsernameFromSession(@ModelAttribute("username") String username){
-    //     return username;
-    // }
+    @ModelAttribute("username")
+    public String getUsernameFromSession(@ModelAttribute("username") String username){
+        return username;
+    }
 
     //Default Home page 
     @GetMapping("/home")
@@ -40,11 +40,7 @@ public class PageController {
     }
     
     
-    //Feedback page
-    @GetMapping("/feedback")
-    public String showFeedbackPage(){
-        return "feedback";
-    }
+    
     //Plan page
     // @GetMapping("/plan")
     // public String showPlanPage(Model model){

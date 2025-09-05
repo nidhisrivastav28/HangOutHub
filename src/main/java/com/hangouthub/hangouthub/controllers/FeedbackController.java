@@ -21,7 +21,7 @@ public class FeedbackController {
     @GetMapping("/feedback")
     public String showFeedbackForm(Model model){
          model.addAttribute("feedback", new Feedback());
-        return "redirect:/feedback";
+        return "feedback";
     }
 
     // save feedback
@@ -29,14 +29,14 @@ public class FeedbackController {
     public String saveFeedback(@ModelAttribute Feedback feedback, RedirectAttributes redirectAttributes){
         feedbackService.saveFeedback((feedback));
         redirectAttributes.addFlashAttribute("feedbackSuccess", true);
-        return "redirect:/home-login";
+        return "redirect:/feedback";
     }
 
     // display feedback
-    @GetMapping("/home")
-    public String getAllFeedback(Model model){
-        model.addAttribute("feedbackList", feedbackService.getAllFeedback());
-        return "feedback-list";
-    }
+    // @GetMapping("/home")
+    // public String getAllFeedback(Model model){
+    //     model.addAttribute("feedbackList", feedbackService.getAllFeedback());
+    //     return "feedback-list";
+    // }
 
 }

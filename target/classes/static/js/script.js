@@ -1,29 +1,38 @@
-const { data } = require("autoprefixer");
+// const { data } = require("autoprefixer");
 
  function toggleDropdown() {
     document.getElementById("dropdownMenu").classList.toggle("hidden");
   }
 
   //Default Home pg slider
-  let currentIndex = 0;
+window.onload = function(){
   const slider = document.getElementById("slider");
-  const slides = slider.children;
+  if(slider){
+    let currentIndex = 0;
+    const slides = slider.children;
 
-  function showSlide(index){
-    const slideWidth = slides[0].clientWidth;
-    slider.style.transform = `translateX(-${index * slideWidth}px)`;
-  }
-  function nextSlide(){
-    currentIndex = (currentIndex +1) % slides.length;
-    showSlide(currentIndex);
-  }
-  function prevSlide(){
-    currentIndex = (currentIndex -1 +slides.length) % slides.length;
-    showSlide(currentIndex);
-  }
+    function showSlide(index){
+      const slideWidth = slides[0].clientWidth;
+      slider.style.transform = `translateX(-${index * slideWidth}px)`;
+    }
+    function nextSlide(){
+      currentIndex = (currentIndex +1) % slides.length;
+      showSlide(currentIndex);
+    }
+    function prevSlide(){
+      currentIndex = (currentIndex -1 +slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
   
-  showSlide(currentIndex);
-  setInterval(nextSlide,5000);
+    showSlide(currentIndex);
+    setInterval(nextSlide,5000);
+
+    document.querySelector("button[onclick='prevSlide()']").onclick = prevSlide;
+    document.querySelector("button[onclick='nextSlide()']").onclick = nextSlide;
+  } else {
+      console.warn("Slider element not found!");
+  }
+};
 
 // Plan Page image Slider
   var swiper = new Swiper(".mySwiper", {
@@ -67,7 +76,7 @@ function showPlaces(){
   })
   .then(response => response.json())
   .then(data => {
-    let html = '<table><tr><th>Name</th<th>Description</th><th>Budget</th></tr>';
+    let html = '<table><tr><th>Name</th><th>Description</th><th>Budget</th></tr>';
     data.forEach(place => {
       html += `<tr>
                   <td>${place.name}</td>
@@ -80,3 +89,16 @@ function showPlaces(){
   })
   .catch(err => console.error(err));
 }
+
+
+// Feedback form script
+// window.onload = function(){
+//   const feedbackSuccess = /*[[${feedbackSuccess}]]*/ false;
+
+//   if(feedbackSuccess){
+//     alert("Thank you for your feedback!");
+//     setTimeout(function(){
+//       window.location.href = "/home-login";
+//     }, 2000);
+//   }
+// }
