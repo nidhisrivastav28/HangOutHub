@@ -15,7 +15,7 @@
 
 <body>
     <!-- NAVBAR STARTS -->
-    <div th:if="${session.username == null}" th:insert="fragments/navbar :: navbar"></div>
+    <div th:if="${session.username == null}" th:insert="~{fragments/navbar :: navbar}"></div>
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->
@@ -61,12 +61,12 @@
             class="absolute right-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full">&#8594;</button>
 
     </div>
-
+    <br><br>
     <!-- ABOUT SECTION STARTS -->
-    <div class="container mx-auto px-6" id="about">
+    <div class="container mx-auto px-6 py-16 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300" id="about">
         <div class="text-center">
             <h1 class="text-4xl mt-8 font-bold">ABOUT US</h1>
-            <p class="italic text-gray-600 mt-2">"Helping you to plan the perfect hangout - based on your vibe"</p>
+            <p class="italic text-gray-800 mt-2">"Helping you to plan the perfect hangout - based on your vibe"</p>
         </div>
 
         <div class="max-w-6xl mx-auto mt-10">
@@ -78,10 +78,9 @@
 
                 <!-- Timeline Item 1 (Left) -->
                 <div class="flex w-full justify-between items-center" data-aos="zoom-in-right" data-aos-delay="200" data-aos-offset="100">
-                    <div
-                        class="w-5/12 bg-white shadow-lg p-6 rounded-md text-right hover:shadow-xl transition duration-300">
-                        <h3 class="text-xl font-semibold mb-2">OUR MISSION</h3>
-                        <p>To offer users mood-based travel inspiration that aligns with their emotions and preferences,
+                    <div class="w-5/12 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-100 backdrop-blur-md border border-black/40 shadow-lg p-6 rounded-2xl text-right hover:shadow-2xl transition duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">OUR MISSION</h3>
+                        <p class="text-gray-600">To offer users mood-based travel inspiration that aligns with their emotions and preferences,
                             making every journey meaningful and personal.</p>
                     </div>
                     <div class="z-10 flex items-center justify-center text-5xl h-12 w-12 bg-blue-100 rounded-full border-2 border-blue-500"
@@ -94,20 +93,18 @@
                     <div class="w-5/12"></div>
                     <div class="z-10 flex items-center justify-center text-5xl h-12 w-12 bg-blue-100 rounded-full border-2 border-blue-500"
                         data-aos="zoom-in">🔹</div>
-                    <div
-                        class="w-5/12 bg-white shadow-lg p-6 rounded-md text-left hover:shadow-xl transition duration-300">
-                        <h3 class="text-xl font-semibold mb-2">Why we exist?</h3>
-                        <p>We exist to bridge the gap between how someone feels and where they want to be. Instead of
+                    <div class="w-5/12 bg-gradient-to-r from-pink-100 via-purple-300 to-blue-300 backdrop-blur-md  border-black/40 shadow-lg p-6 rounded-2xl text-right hover:shadow-2xl transition duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Why we exist?</h3>
+                        <p class="text-gray-700">We exist to bridge the gap between how someone feels and where they want to be. Instead of
                             endless searches, we deliver handpicked destinations based on mood.</p>
                     </div>
                 </div>
 
                 <!-- Timeline Item 3 (Left) -->
                 <div class="flex w-full justify-between items-center" data-aos="zoom-in-right" data-aos-delay="200" data-aos-offset="100">
-                    <div
-                        class="w-5/12 bg-white shadow-lg p-6 rounded-md text-right hover:shadow-xl transition duration-300">
-                        <h3 class="text-xl font-semibold mb-2">What makes us Unique?</h3>
-                        <p>Unlike traditional travel apps, we focus on emotions first. Our platform recommends places
+                    <div class="w-5/12 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 border backdrop-blur-md border-black/40 shadow-lg p-6 rounded-2xl text-right hover:shadow-2xl transition duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">What makes us Unique?</h3>
+                        <p class="text-gray-700">Unlike traditional travel apps, we focus on emotions first. Our platform recommends places
                             not just by location but by how a person is feeling — adventurous, relaxed, romantic, or
                             joyful.</p>
                     </div>
@@ -122,9 +119,9 @@
                     <div class="z-10 flex items-center justify-center text-5xl h-12 w-12 bg-blue-100 rounded-full border-2 border-blue-500"
                         data-aos="zoom-in">🔹</div>
                     <div
-                        class="w-5/12 bg-white shadow-lg p-6 rounded-md text-left hover:shadow-xl transition duration-300">
-                        <h3 class="text-xl font-semibold mb-2">What's coming next?</h3>
-                        <p>We're working on integrating real-time suggestions using user preferences and open APIs —
+                        class="w-5/12  bg-gradient-to-r from-pink-100 via-purple-300 to-blue-300 backdrop-blur-md border-black/40 shadow-lg p-6 rounded-2xl text-right hover:shadow-2xl transition duration-300">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">What's coming next?</h3>
+                        <p class="text-gray-700">We're working on integrating real-time suggestions using user preferences and open APIs —
                             making travel recommendations even more intuitive and smart.</p>
                     </div>
                 </div>
@@ -165,7 +162,7 @@
     <script th:src="@{/js/externalJS.js}"></script>
 
     <!-- FOOTER STARTS -->
-    <div th:insert="fragments/footer :: footer"></div>
+    <div th:insert="~{fragments/footer :: footer}"></div>
     <!-- FOOTER ENDS -->
 
 
