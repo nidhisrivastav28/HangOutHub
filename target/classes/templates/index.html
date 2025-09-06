@@ -16,7 +16,7 @@
 
 <body>
     <!-- NAVBAR STARTS -->
-    <div th:if="${session.username == null}" th:insert="~{fragments/navbar :: navbar}"></div>
+    <div th:if="${session.username == null}" th:replace="~{fragments/navbar :: navbar}"></div>
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->

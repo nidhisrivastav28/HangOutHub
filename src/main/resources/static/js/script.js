@@ -35,17 +35,17 @@ window.onload = function(){
 };
 
 // Plan Page image Slider
-  var swiper = new Swiper(".mySwiper", {
-  loop: true,
-  autoplay: {
-    delay: 1500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  }
-});
+//   var swiper = new Swiper(".mySwiper", {
+//   loop: true,
+//   autoplay: {
+//     delay: 1500,
+//     disableOnInteraction: false,
+//   },
+//   pagination: {
+//     el: ".swiper-pagination",
+//     clickable: true,
+//   }
+// });
 
 // Current Location Data fetching
 var uLat;
@@ -93,12 +93,38 @@ function showPlaces(){
 
 // Feedback form script
 // window.onload = function(){
-//   const feedbackSuccess = /*[[${feedbackSuccess}]]*/ false;
+  const feedbackSuccess = /*[[${feedbackSuccess}]]*/ false;
 
-//   if(feedbackSuccess){
-//     alert("Thank you for your feedback!");
-//     setTimeout(function(){
-//       window.location.href = "/home-login";
-//     }, 2000);
-//   }
+  if(feedbackSuccess){
+    const popup = document.getElementById("thankyouPopup");
+    popup.classList.remove("hidden");
+
+    setTimeout(function(){
+      window.location.href = "/home-login";
+    }, 2000);
+  }
 // }
+
+// Feedback form star Rating
+// const star = document.querySelectorAll('.star');
+// let selectedStar = 0;
+// star.forEach((star, i) => {
+//   star.addEventListener("click", () => {
+//     selectedStar = i;
+//     updateStars();
+//   });
+// });
+
+// function updateStars() {
+//   star.forEach((star, i) => {
+//     if (i <= selectedStar) {
+//       star.classList.add("text-yellow-400");
+//       star.classList.remove("text-gray-300");
+//     } else {
+//       star.classList.add("text-gray-300");
+//       star.classList.remove("text-yellow-400");
+//     }
+//   });
+// }
+
+
