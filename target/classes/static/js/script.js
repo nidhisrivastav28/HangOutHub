@@ -106,25 +106,25 @@ function showPlaces(){
 // }
 
 // Feedback form star Rating
-// const star = document.querySelectorAll('.star');
-// let selectedStar = 0;
-// star.forEach((star, i) => {
-//   star.addEventListener("click", () => {
-//     selectedStar = i;
-//     updateStars();
-//   });
-// });
+const star = document.querySelectorAll('.star');
+let selectedStar = 0;
+star.forEach((star, i) => {
+  star.addEventListener("click", () => {
+    selectedStar = i;
+    updateStars();
+  });
+});
 
-// function updateStars() {
-//   star.forEach((star, i) => {
-//     if (i <= selectedStar) {
-//       star.classList.add("text-yellow-400");
-//       star.classList.remove("text-gray-300");
-//     } else {
-//       star.classList.add("text-gray-300");
-//       star.classList.remove("text-yellow-400");
-//     }
-//   });
-// }
+function updateStars() {
+  star.forEach((star, i) => {
+    if (i <= selectedStar) {
+      star.classList.add("text-yellow-400");
+      star.classList.remove("text-gray-300");
+    } else {
+      star.classList.add("text-gray-300");
+      star.classList.remove("text-yellow-400");
+    }
+  });
+}
 
 
