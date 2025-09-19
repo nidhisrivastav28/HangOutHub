@@ -128,4 +128,19 @@ function updateStars() {
   });
 }
 
+// Slider for feedback
+document.addEventListener("DOMContentLoaded", function(){
+  new Swiper(".mySwiper",{
+    slidesPerView: 4,
+    spaceBetween: 15,
+    loop: true,
+    slidesOffsetBefore: 20, 
+    slidesOffsetAfter: 20,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false
+    },
+
+  });
+});
 

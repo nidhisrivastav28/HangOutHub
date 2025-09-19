@@ -22,7 +22,7 @@ public class FeedbackServiceImpl implements FeedbackService{
 
     @Override
     public List<Feedback> getAllFeedback() {
-        return feedbackRepo.findAll();
+        return feedbackRepo.findAllByOrderByCreatedAtDesc();
     }
     
 }
