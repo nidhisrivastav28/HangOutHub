@@ -26,30 +26,35 @@
 
                 <!-- ⭐ Star Rating (radio button based) -->
                 <div class="flex justify-center space-x-1">
-                    <input type="radio" name="rating" id="star5" value="5" class="hidden">
-                    <label for="star5" class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
-
-                    <input type="radio" name="rating" id="star4" value="4" class="hidden">
-                    <label for="star4" class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
-
-                    <input type="radio" name="rating" id="star3" value="3" class="hidden">
-                    <label for="star3" class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
+                    <input type="radio" name="rating" id="star1" value="1" class="hidden">
+                    <label for="star1"
+                        class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
 
                     <input type="radio" name="rating" id="star2" value="2" class="hidden">
-                    <label for="star2" class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
+                    <label for="star2"
+                        class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
 
-                    <input type="radio" name="rating" id="star1" value="1" class="hidden">
-                    <label for="star1" class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
+                    <input type="radio" name="rating" id="star3" value="3" class="hidden">
+                    <label for="star3"
+                        class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
+
+                    <input type="radio" name="rating" id="star4" value="4" class="hidden">
+                    <label for="star4"
+                        class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
+
+                    <input type="radio" name="rating" id="star5" value="5" class="hidden">
+                    <label for="star5"
+                        class="star cursor-pointer text-4xl text-gray-300 hover:text-yellow-400">★</label>
                 </div>
 
                 <!-- Text -->
                 <p class="text-gray-700 font-medium">Kindly take a moment to tell us what you think.</p>
-                <!-- Namr -->
-                <input type="text" name="" id=""
+                <!-- Name -->
+                <input type="text" name="name" id=""
                     class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
                     placeholder="Please enter your name">
                 <!-- Email -->
-                <input type="email" name="" id=""
+                <input type="email" name="email" id=""
                     class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none"
                     placeholder="Please enter your email">
                 <!-- Message -->
@@ -71,6 +76,12 @@
         </div>
     </div>
 
+
+    <!-- Feedback submission pop-up -->
+    <script th:if="${feedbackSuccess}">
+        alert("Thank you for your feedback!");
+        window.location.href = "/home-login";  // 👈 home page pe redirect
+    </script>
     <script th:src="@{/js/script.js}"></script>
 </body>
 

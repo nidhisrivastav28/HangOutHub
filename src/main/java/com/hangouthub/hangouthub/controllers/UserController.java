@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+
 import com.hangouthub.hangouthub.models.User;
 import com.hangouthub.hangouthub.repository.UserRepository;
 
@@ -43,7 +45,7 @@ public class UserController {
             return "login";
         }
 
-        session.setAttribute("username",user.getName());
+        model.addAttribute("username",user.getName());
         return "redirect:/home-login";
     }
 
@@ -55,19 +57,20 @@ public class UserController {
 
     // Home page after login
     @GetMapping("/home-login")
-    public String showHomePageAfterLogin(Model model,HttpSession session) {
-        String username = (String) session.getAttribute("username");
+    public String showHomePageAfterLogin(@ModelAttribute("username")String username, Model model) {
         if (username == null) {
             return "login";
         }
+
         // model.addAttribute("moods", moodService.getAllMoods());
         model.addAttribute("username", username);
         return "login-home";
     }
     // Log-out
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session, SessionStatus status){
         session.invalidate();
+        status.setComplete();
         return "redirect:/home";
     }
 }

@@ -18,8 +18,8 @@ import com.hangouthub.hangouthub.services.FeedbackService;
 // import com.hangouthub.hangouthub.services.MoodService;
 
 // import jakarta.servlet.http.HttpSession;
- 
-@Controller 
+
+@Controller
 @SessionAttributes("username")
 public class PageController {
     @Autowired
@@ -27,28 +27,23 @@ public class PageController {
     // private MoodService moodService;
 
     @ModelAttribute("username")
-    public String getUsernameFromSession(@ModelAttribute("username") String username){
+    public String getUsernameFromSession(@ModelAttribute("username") String username) {
         return username;
     }
 
-    //Default Home page 
+    // Default Home page
     @GetMapping("/home")
-    public String showHomePage(Model model, @ModelAttribute("feedbackSuccess") String success) {
+    public String showHomePage(Model model, @ModelAttribute("feedbackSuccess") String success) { 
         model.addAttribute("feedbackList", feedbackService.getAllFeedback());
-        model.addAttribute("feedbackSuccess",success);
-        return "index";
+        return "index"; // 👈 index.html = aapka home/landing page
     }
-    
-    
-    
-    //Plan page
+
+    // Plan page
     // @GetMapping("/plan")
     // public String showPlanPage(Model model){
-    //     List<Mood> moods = moodService.getAllMoods();
-    //     model.addAttribute("moods", moods);
-    //     return "plan";
+    // List<Mood> moods = moodService.getAllMoods();
+    // model.addAttribute("moods", moods);
+    // return "plan";
     // }
-    
-    
-    
+
 }

@@ -67,6 +67,7 @@ function getLocation(){
   }
 }
 
+
 // Display Places
 function showPlaces(){
   fetch('/searchByLocation',{
@@ -92,7 +93,7 @@ function showPlaces(){
 
 
 // Feedback form script
-// window.onload = function(){
+window.onload = function(){
   const feedbackSuccess = /*[[${feedbackSuccess}]]*/ false;
 
   if(feedbackSuccess){
@@ -103,7 +104,7 @@ function showPlaces(){
       window.location.href = "/home-login";
     }, 2000);
   }
-// }
+}
 
 // Feedback form star Rating
 const star = document.querySelectorAll('.star');
