@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/input.css}">
     <link rel="stylesheet" th:href="@{/css/output.css}">
-    
+
     <link rel="icon" type="image/png" href="/images/logo_darkbg.png" alt="">
     <title>Forgot Password</title>
 </head>
+
 <body>
     <div class="min-h-screen forcenter ">
         <div class="w-full max-w-md space-y-8">
@@ -25,11 +27,17 @@
                         class="w-full forcenter py-2 px-4 border border-transparent bg-indigo-600 text-white font-medium rounded-md transition hover:bg-indigo-700"
                         type="submit">Continue</button>
                 </div>
-                <div>
-                    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+                <!-- Message show karne ke liye -->
+                <div th:if="${msg}" style="color:green">
+                    <p th:text="${msg}"></p>
                 </div>
-            </form> 
+
+                <div th:if="${error}" style="color:red">
+                    <p th:text="${error}"></p>
+                </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>

@@ -1,5 +1,8 @@
 package com.hangouthub.hangouthub.models;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,12 @@ public class User {
 	private String pswd;
     private String cpswd;
 	
+	// 🔹 New fields for forgot password
+		@Column(unique = true)
+		private String resetToken;
+	
+		private LocalDateTime tokenExpiry;
+
 	public User() {	}
 	 
 //	public Long getId() {

@@ -131,7 +131,7 @@ function updateStars() {
 // Slider for feedback
 document.addEventListener("DOMContentLoaded", function(){
   new Swiper(".mySwiper",{
-    slidesPerView: 4,
+    slidesPerView: "auto",
     spaceBetween: 15,
     loop: true,
     slidesOffsetBefore: 20, 
