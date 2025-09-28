@@ -16,7 +16,7 @@ import com.hangouthub.hangouthub.repository.PlaceRepository;
 import com.hangouthub.hangouthub.services.PlaceService;
 
 @Service
-public class PlaceServiceImpl implements PlaceService{
+public class PlaceServiceImpl implements PlaceService {
     @Autowired
     private PlaceRepository placeRepository;
 
@@ -63,14 +63,27 @@ public class PlaceServiceImpl implements PlaceService{
     }
 
     @Override
-    public List<Places> getPlacesByFilters(Long moodId, Long locationId, Long budgetId) {
-        Mood mood = moodRepo.findById(moodId).orElseThrow();
+    public List<Places> getPlacesByFilters(List<Long> moodId, Long locationId, Long budgetId) {
+
         Locations locations = locationRepository.findById(locationId).orElseThrow();
-        Budget budget = budgetRepository.findById(budgetId).orElseThrow();
-        
-        return placeRepository.findByMoodAndLocationsAndBudget(mood, locations, budget);
-//      changed findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
-//      dekh ekta extra 's' ache naming e
+        Budget budget = (budgetId != null) ? budgetRepository.findById(budgetId).orElse(null) : null;
+
+        List<Mood> mood = (moodId != null && !moodId.isEmpty()) ? moodRepo.findAllById(moodId) : null;
+
+        if ((mood != null) && (budget != null)) {
+            return placeRepository.findByMoodsInAndLocationsAndBudget(mood, locations, budget);
+        }else if(mood != null){
+            return placeRepository.findByMoodsInAndLocations(mood, locations);
+        }else if(budget != null){
+            return placeRepository.findByLocationsAndBudget(locations, budget);
+        }else{
+            // agar budget optional hai to without budget bhi query chale
+            return placeRepository.findByLocations(locations);
+        }
+
+        // sreturn placeRepository.findByMoodAndLocationsAndBudget(mood, locations, budget);
+        // changed findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
+        // dekh ekta extra 's' ache naming e
     }
-    
+
 }

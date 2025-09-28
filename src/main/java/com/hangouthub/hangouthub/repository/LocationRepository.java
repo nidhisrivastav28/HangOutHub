@@ -3,6 +3,7 @@ package com.hangouthub.hangouthub.repository;
 import java.util.*;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.hangouthub.hangouthub.models.Locations;
@@ -11,4 +12,6 @@ import com.hangouthub.hangouthub.models.Locations;
 public interface LocationRepository extends JpaRepository<Locations, Long>{
     Optional<Locations> findByLatitudeAndLongitude(double latitude, double longitude);
     
+    @Query("SELECT DISTINCT l FROM Locations l")
+    List<Locations> findDistinctLocation();
 } 

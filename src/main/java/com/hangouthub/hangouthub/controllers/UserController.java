@@ -70,7 +70,7 @@ public class UserController {
     public String handleForgetPassword(@RequestParam String email, Model model) {
         try {
             String token = userService.generateResetToken(email);
-            String resetLink = "http://localhost:8080/reset-password?token=" + token;
+            String resetLink = "http://localhost:8080/resetpswd?token=" + token;
 
             // pass the link to email service
             emailService.sendForgotPasswordMail(email, resetLink);
@@ -83,7 +83,7 @@ public class UserController {
     }
 
     // Show reset password page
-    @GetMapping("/reset-password")
+    @GetMapping("/resetpswd")
     public String showResetPassword(@RequestParam String token, Model model) {
         User user = userService.getUserByResetToken(token);
         if (user == null) {
@@ -91,17 +91,26 @@ public class UserController {
             return "forgetpswd";
         }
         model.addAttribute("token", token);
-        return "reset-password";
+        return "resetpswd";
     }
 
     // Handle reset password form submit
-    @PostMapping("/reset-password")
-    public String handleResetPassword(@RequestParam String token, @RequestParam String newPassword, Model model) {
+    @PostMapping("/resetpswd")
+    public String handleResetPassword(@RequestParam String token, @RequestParam String newPassword, @RequestParam String confirmPassword, Model model) {
         User user = userService.getUserByResetToken(token);
+        if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("error","Passwords do not match!");
+            model.addAttribute("token",token);
+            return "resetpswd";
+        }
+
+        user = userService.getUserByResetToken(token);
+
         if (user == null) {
             model.addAttribute("error", "Invalid or expired token!");
             return "forgetpswd";
         }
+
         userService.updatePassword(user, newPassword);
         model.addAttribute("msg", "Password updated successfully! You can login now.");
         return "login";

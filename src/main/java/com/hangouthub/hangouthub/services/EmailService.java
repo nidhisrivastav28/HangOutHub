@@ -15,7 +15,7 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toEmail);
         message.setSubject("Password Reset Request");
-        message.setText("Click the following link to reset" + resetLink);
+        message.setText("Click the following link to reset\n" + resetLink);
         
         message.setFrom("www.nidhisrivastav@gmail.com");
 

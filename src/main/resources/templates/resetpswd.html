@@ -6,36 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/input.css}">
     <link rel="stylesheet" th:href="@{/css/output.css}">
-
     <link rel="icon" type="image/png" href="/images/logo_darkbg.png" alt="">
     <title>Reset Password</title>
 </head>
 
 <body>
+
+    <div th:if="${error}" style="color:red">
+        <p th:text="${error}"></p>
+    </div>
+
     <div class="min-h-screen forcenter ">
         <div class="w-full max-w-md space-y-8">
             <div class="forcenter">
                 <img src="images/logo_lightbg.png" class="h-16 w-26" alt="">
             </div>
-            <h1 class="font-bold forcenter text-2xl">Forgotten Your Password?</h1>
-            <form class="mt-8 space-y-6" th:action="@{/pswdreset}" method="post">
-                <div class="rounded-md shadow-sm space-y-4">
-                    <input
-                        class="appearance-none rounded w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                        type="email" name="email" placeholder="Enter your registered email">
-                    <button
-                        class="w-full forcenter py-2 px-4 border border-transparent bg-indigo-600 text-white font-medium rounded-md transition hover:bg-indigo-700"
-                        type="submit">Continue</button>
-                </div>
-                <!-- Message show karne ke liye -->
-                <div th:if="${msg}" style="color:green">
-                    <p th:text="${msg}"></p>
-                </div>
+            <h1 class="font-bold forcenter text-2xl">Reset Your Password?</h1>
 
-                <div th:if="${error}" style="color:red">
-                    <p th:text="${error}"></p>
-                </div>
+            <form action="/resetpswd" method="post" class="space-y-4">
+                <input type="hidden" name="token" th:value="${token}" />
+
+                <input class="appearance-none rounded w-full px-3 py-2 border border-gray-300 placeholder-gray-400 
+           focus:outline-none focus:ring-2 focus:ring-indigo-500" type="password" name="newPassword"
+                    placeholder="Enter new password" required />
+
+                <input class="appearance-none rounded w-full px-3 py-2 border border-gray-300 placeholder-gray-400 
+           focus:outline-none focus:ring-2 focus:ring-indigo-500" type="password" name="confirmPassword"
+                    placeholder="Confirm new password" required />
+
+                <button class="w-full forcenter py-2 px-4 border border-transparent bg-indigo-600 text-white 
+           font-medium rounded-md transition hover:bg-indigo-700" type="submit">Continue</button>
             </form>
+
         </div>
     </div>
 </body>

@@ -46,6 +46,21 @@ window.onload = function(){
 //     clickable: true,
 //   }
 // });
+// function validateMood(){
+//   let checkboxes = document.querySelectorAll('input[name="mood"]');
+//   let isChecked = false;
+
+//   checkboxes.forEach(cb => {
+//     if (cb.checked){
+//       isChecked = true;
+//     }
+//   });
+
+//   if(!isChecked){
+//     alert("Please select at least one mood");
+//   }
+// }
+
 
 // Current Location Data fetching
 var uLat;
