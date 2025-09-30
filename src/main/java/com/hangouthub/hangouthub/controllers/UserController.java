@@ -119,8 +119,8 @@ public class UserController {
     // Home page after login
     @GetMapping("/home-login")
     public String showHomePageAfterLogin(@ModelAttribute("username") String username, Model model) {
-        if (username == null) {
-            return "login";
+        if ( (username == null) || (username.isEmpty())){
+            return "redirect:/login?msg=Please+login+first";
         }
 
         // model.addAttribute("moods", moodService.getAllMoods());

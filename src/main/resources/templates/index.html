@@ -20,7 +20,7 @@
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->
-    <div class="relative w-full h-[90vh] overflow-hidden">
+    <div class="relative w-full h-auto md:h-screen overflow-hidden">
         <div id="slider" class="flex transition-transform duration-700 ease-in-out">
             <!-- Slide 1 -->
             <div class="w-full h-full relative shrink-0 slide">
@@ -32,7 +32,7 @@
             </div>
             <!-- Slide 2 -->
             <div class="w-full h-full relative shrink-0">
-                <img src="/images/img2.jpg" class="w-full h-full object-cover" />
+                <img src="/images/img2.png" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 flex items-center justify-center bg-black/40">
                     <h1 class="text-white text-4xl font-bold text-center">Coffee,Friendz & Conversation<br>Let's find
                         Your Vibe</h1>
@@ -56,10 +56,10 @@
             <h1 class="text-white text-4xl font-bold">Welcome to HangOutHub</h1>
         </div> -->
 
-        <button onclick="prevSlide()"
-            class="absolute left-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full">&#8592;</button>
+        <!-- <button onclick="prevSlide()"
+            class="absolute left-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full hidden">&#8592;</button>
         <button onclick="nextSlide()"
-            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full">&#8594;</button>
+            class="absolute right-5 top-1/2 transform -translate-y-1/2 text-white text-2xl bg-black/50 px-3 py-1 rounded-full hidden">&#8594;</button> -->
 
     </div>
     <br><br>
@@ -146,44 +146,45 @@
     <hr>
 
     <!-- FEEDBACK SECTION STARTS -->
-    <section class="bg-gray-100 py-10" id="feedback">
-        <div class=" text-center">
-            <h1 class="text-3xl font-bold mb-6">FEEDBACK</h1>
-            <p class="italic">From solo trip to squad hangouts - see what people loved about us</p>
-            <br><br>
+    <section class="bg-gray-100 py-12" id="feedback">
+        <div class="text-center max-w-3xl mx-auto px-4">
+            <h1 class="text-3xl font-bold mb-4">FEEDBACK</h1>
+            <p class="italic text-gray-600">
+                From solo trip to squad hangouts – see what people loved about us
+            </p>
         </div>
-        <!-- <h2 class="text-3xl font-bold text-center mb-6">What Our Users Say</h2> -->
 
-        <div class="relative w-full overflow-hidden">
-            <div class="swiper mySwiper px-4">
-                <div class="swiper-wrapper ">
-                    <!-- Loop over feedbackList -->
-                    <div th:each="feedback : ${feedbackList}" class="swiper-slide flex-shrink-0 w-full sm:w-1/2 md:w-[32%] lg:w-1/4">
-                        <div class="bg-white shadow-lg rounded-2xl p-6 text-center w-1/3">
+        <div class="relative w-full max-w-6xl mx-auto mt-10 px-6 overflow-hidden">
+            <!-- Outer Slider Wrapper -->
+            <div id="feedbackSlider" class="flex transition-transform duration-700 ease-in-out"
+                style="width: max-content;">
 
-                            <!-- User name -->
-                            <h3 class="font-semibold text-gray-800 text-3xl mb-1" th:text="${feedback.name}">User Name
-                            </h3>
-                            <div class="text-yellow-400 text-3xl mb-2">
-                                <span th:each="i : ${#numbers.sequence(1, feedback.rating)}">★</span>
-                            </div>
-                            <!-- Feedback message -->
-                            <p class="text-gray-600 italic mb-2 text-xl" th:text="${feedback.msg}">Great experience!</p>
+                <!-- Feedback Cards Loop -->
+                <div th:each="feedback : ${feedbackList}" class="flex-shrink-0 w-72 px-4"> <!-- Fixed width card -->
+                    <div class="bg-white shadow-xl rounded-2xl p-6 text-center h-full flex flex-col justify-between">
 
+                        <!-- User name -->
+                        <h3 class="font-semibold text-gray-800 text-xl mb-2" th:text="${feedback.name}">User Name</h3>
 
-
-                            <!-- Date -->
-                            <p class="text-gray-400 text-sm"
-                                th:text="${#temporals.format(feedback.createdAt,'dd MMM yyyy')}">12 Sep 2025</p>
+                        <!-- Rating -->
+                        <div class="text-yellow-400 text-xl mb-2">
+                            <span th:each="i : ${#numbers.sequence(1, feedback.rating)}">★</span>
                         </div>
+
+                        <!-- Feedback message -->
+                        <p class="text-gray-600 italic text-base mb-3" th:text="${feedback.msg}">Great experience!</p>
+
+                        <!-- Date -->
+                        <p class="text-gray-400 text-sm"
+                            th:text="${#temporals.format(feedback.createdAt,'dd MMM yyyy')}">12 Sep 2025</p>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
     <!-- FEEDBACK SECTION ENDS -->
-
-
 
     <!-- <div id="feedback">
         <div class="text-center">

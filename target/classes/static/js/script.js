@@ -1,38 +1,27 @@
 // const { data } = require("autoprefixer");
 
- function toggleDropdown() {
-    document.getElementById("dropdownMenu").classList.toggle("hidden");
-  }
+function toggleDropdown() {
+  document.getElementById("dropdownMenu").classList.toggle("hidden");
+}
 
-  //Default Home pg slider
-window.onload = function(){
-  const slider = document.getElementById("slider");
-  if(slider){
-    let currentIndex = 0;
-    const slides = slider.children;
+//Default Home pg slider
+const homeSlider = document.getElementById("slider");
+let homeIndex = 0;
+const homeSlides = homeSlider.children;
 
-    function showSlide(index){
-      const slideWidth = slides[0].clientWidth;
-      slider.style.transform = `translateX(-${index * slideWidth}px)`;
-    }
-    function nextSlide(){
-      currentIndex = (currentIndex +1) % slides.length;
-      showSlide(currentIndex);
-    }
-    function prevSlide(){
-      currentIndex = (currentIndex -1 +slides.length) % slides.length;
-      showSlide(currentIndex);
-    }
-  
-    showSlide(currentIndex);
-    setInterval(nextSlide,5000);
+function showHomeSlide(index) {
+  const slideWidth = homeSlides[0].clientWidth;
+  homeSlider.style.transform = `translateX(-${index * slideWidth}px)`;
+}
 
-    document.querySelector("button[onclick='prevSlide()']").onclick = prevSlide;
-    document.querySelector("button[onclick='nextSlide()']").onclick = nextSlide;
-  } else {
-      console.warn("Slider element not found!");
-  }
-};
+function nextHomeSlide() {
+  homeIndex = (homeIndex + 1) % homeSlides.length;
+  showHomeSlide(homeIndex);
+}
+
+// Start
+showHomeSlide(homeIndex);
+setInterval(nextHomeSlide, 3000);
 
 // Plan Page image Slider
 //   var swiper = new Swiper(".mySwiper", {
@@ -66,56 +55,56 @@ window.onload = function(){
 var uLat;
 var uLong;
 
-function getLocation(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition((position) =>{
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
       uLat = position.coords.latitude;
       uLong = position.coords.longitude;
 
-      document.getElementById("output").innerHTML = "Latitude=" +uLat+ "Longitude="+uLong; 
+      document.getElementById("output").innerHTML = "Latitude=" + uLat + "Longitude=" + uLong;
     }, (error) => {
-      alert("Error fetching location: "+error.message);
+      alert("Error fetching location: " + error.message);
     });
   }
-  else{
+  else {
     alert("Geolocation is not supported by this browser");
   }
 }
 
 
 // Display Places
-function showPlaces(){
-  fetch('/searchByLocation',{
+function showPlaces() {
+  fetch('/searchByLocation', {
     method: 'Post',
-    headers: {'Content-Type': 'application/json'},
-    body:JSON.stringify({ latitude: uLat,longitude:uLong })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ latitude: uLat, longitude: uLong })
   })
-  .then(response => response.json())
-  .then(data => {
-    let html = '<table><tr><th>Name</th><th>Description</th><th>Budget</th></tr>';
-    data.forEach(place => {
-      html += `<tr>
+    .then(response => response.json())
+    .then(data => {
+      let html = '<table><tr><th>Name</th><th>Description</th><th>Budget</th></tr>';
+      data.forEach(place => {
+        html += `<tr>
                   <td>${place.name}</td>
                   <td>${place.description}</td>
                   <td>${place.budget}</td>
                </tr>`;
-    });
-    html += '</table>';
-    document.getElementById('results').innerHTML = html;
-  })
-  .catch(err => console.error(err));
+      });
+      html += '</table>';
+      document.getElementById('results').innerHTML = html;
+    })
+    .catch(err => console.error(err));
 }
 
 
 // Feedback form script
-window.onload = function(){
+window.onload = function () {
   const feedbackSuccess = /*[[${feedbackSuccess}]]*/ false;
 
-  if(feedbackSuccess){
+  if (feedbackSuccess) {
     const popup = document.getElementById("thankyouPopup");
     popup.classList.remove("hidden");
 
-    setTimeout(function(){
+    setTimeout(function () {
       window.location.href = "/home-login";
     }, 2000);
   }
@@ -143,19 +132,40 @@ function updateStars() {
   });
 }
 
-// Slider for feedback
-document.addEventListener("DOMContentLoaded", function(){
-  new Swiper(".mySwiper",{
-    slidesPerView: "auto",
-    spaceBetween: 15,
-    loop: true,
-    slidesOffsetBefore: 20, 
-    slidesOffsetAfter: 20,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false
-    },
+// Slider for feedback 
+const feedbackSlider = document.getElementById("feedbackSlider");
+const feedbackSlides = feedbackSlider.children;
+let feedbackIndex = 0;
 
-  });
+function getSlidesPerView() {
+  if (window.innerWidth >= 1024) return 4; // large screen
+  if (window.innerWidth >= 768) return 3; // tablet
+  if (window.innerWidth >= 640) return 2; // mobile landscape
+  return 1; // small mobile
+}
+
+function showFeedbackSlide(index) {
+  if (feedbackSlides.length === 0) return; // safety check
+  const slideWidth = feedbackSlides[0].clientWidth;
+  feedbackSlider.style.transform = `translateX(-${index * slideWidth}px)`;
+}
+
+function nextFeedbackSlide() {
+  const slidesPerView = getSlidesPerView();
+  const totalSlides = feedbackSlides.length;
+
+  // Agar totalSlides slidesPerView se kam hai to slide karne ki zarurat nahi
+  if (totalSlides <= slidesPerView) return;
+
+  feedbackIndex = (feedbackIndex + 1) % (totalSlides - slidesPerView + 1);
+  showFeedbackSlide(feedbackIndex);
+}
+
+// Start
+showFeedbackSlide(feedbackIndex);
+setInterval(nextFeedbackSlide, 3000);
+
+// Resize par reset
+window.addEventListener("resize", () => {
+  showFeedbackSlide(feedbackIndex);
 });
-
