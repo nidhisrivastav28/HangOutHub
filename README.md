@@ -44,7 +44,7 @@ It solves the real-life problem of spending too much time deciding where to go w
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/HangoutHub.git
+git clone https://github.com/nidhisrivastav28/HangoutHub.git
 
 # Navigate to the project folder
 cd HangoutHub
