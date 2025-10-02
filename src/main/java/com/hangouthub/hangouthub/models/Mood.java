@@ -17,6 +17,7 @@ public class Mood {
 	private Long id;
 	private String name;
 	private String description;
+	private String travelWith;
 	
 	public Mood() {	}
 	

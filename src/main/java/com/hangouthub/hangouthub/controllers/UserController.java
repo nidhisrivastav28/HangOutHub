@@ -1,12 +1,18 @@
 package com.hangouthub.hangouthub.controllers;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.hangouthub.hangouthub.models.Mood;
+import com.hangouthub.hangouthub.models.Places;
 import com.hangouthub.hangouthub.models.User;
+import com.hangouthub.hangouthub.repository.MoodRepo;
+import com.hangouthub.hangouthub.repository.PlaceRepository;
 import com.hangouthub.hangouthub.repository.UserRepository;
 import com.hangouthub.hangouthub.services.EmailService;
 import com.hangouthub.hangouthub.services.UserService;
@@ -24,6 +30,12 @@ public class UserController {
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private PlaceRepository placeRepo;
+
+    @Autowired
+    private MoodRepo moodRepo;
 
     // Sign-up page
     @GetMapping("/signup")
@@ -96,11 +108,12 @@ public class UserController {
 
     // Handle reset password form submit
     @PostMapping("/resetpswd")
-    public String handleResetPassword(@RequestParam String token, @RequestParam String newPassword, @RequestParam String confirmPassword, Model model) {
+    public String handleResetPassword(@RequestParam String token, @RequestParam String newPassword,
+            @RequestParam String confirmPassword, Model model) {
         User user = userService.getUserByResetToken(token);
         if (!newPassword.equals(confirmPassword)) {
-            model.addAttribute("error","Passwords do not match!");
-            model.addAttribute("token",token);
+            model.addAttribute("error", "Passwords do not match!");
+            model.addAttribute("token", token);
             return "resetpswd";
         }
 
@@ -118,13 +131,33 @@ public class UserController {
 
     // Home page after login
     @GetMapping("/home-login")
-    public String showHomePageAfterLogin(@ModelAttribute("username") String username, Model model) {
-        if ( (username == null) || (username.isEmpty())){
+    public String showHomePageAfterLogin(@ModelAttribute("username") String username,
+            @RequestParam(required = false) String mood, Model model) {
+        if ((username == null) || (username.isEmpty())) {
             return "redirect:/login?msg=Please+login+first";
         }
 
-        // model.addAttribute("moods", moodService.getAllMoods());
         model.addAttribute("username", username);
+
+        if (mood != null && !mood.isEmpty()) {
+            // 1. Get Mood entity by name
+            Mood selectedMood = moodRepo.findAll()
+                    .stream()
+                    .filter(m -> m.getName().equalsIgnoreCase(mood))
+                    .findFirst()
+                    .orElse(null);
+
+            if (selectedMood != null) {
+                // 2. Fetch places for this mood
+                List<Places> places = placeRepo.findByMood(selectedMood);
+                model.addAttribute("places", places);
+                model.addAttribute("selectedMood", selectedMood.getName());
+            } else {
+                model.addAttribute("places", new ArrayList<>());
+                model.addAttribute("selectedMood", mood);
+            }
+        }
+
         return "login-home";
     }
 

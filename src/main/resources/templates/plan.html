@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/input.css}">
     <link rel="stylesheet" th:href="@{/css/output.css}">
+    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/script.js" defer></script>
 
     <link rel="icon" type="image/png" href="/images/logo_darkbg.png" alt="">
     <title>Make a Plan</title>
@@ -20,160 +23,169 @@
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->
-    <div>
-        <div class="flex flex-col md:flex-row h-auto md:h-screen justify-center items-center gap-8 px-8">
-            <!-- LEFT: Image -->
-            <div class="w-full md:w-1/2 flex justify-center">
-                <div class="swiper mySwiper w-96 h-96 rounded-lg shadow-lg">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="/images/adventure.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Adventure">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/images/couple.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Couple">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/images/foodie.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Foodie">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/images/games.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Games">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/images/shopping.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Shopping">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/images/party.jpg" class="w-full h-full object-cover rounded-lg shadow-lg"
-                                alt="Party">
-                        </div>
-                    </div>
+    <div class="flex flex-col md:flex-row h-auto md:h-screen justify-center items-center gap-8 px-8">
+        <!-- LEFT: Image -->
+        <!-- <div class="w-full flex justify-center overflow-hidden" id="planSlider">
+            <div class="flex slider-wrapper transition-transform duration-500">
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Adventure">
+                    <img src="/images/adventure.jpg" class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
 
-                    <div class="swiper-pagination"></div>
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Couple">
+                    <img src="/images/couple.jpg" class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
+
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Foodie"><img src="/images/foodie.jpg"
+                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
+
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Games"><img src="/images/games.jpg"
+                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
+
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Shopping"><img src="/images/shopping.jpg"
+                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
+
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative" alt="Party"><img src="/images/party.jpg"
+                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
 
                 </div>
 
 
-            </div>
 
-            <!-- RIGHT: Form -->
-            <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 
+            </div>
+        </div> -->
+        <!-- Slider Container -->
+        <div class="w-full md:w-1/2 flex justify-center overflow-hidden" id="planSlider">
+            <!-- Wrapper -->
+            <div class="flex slider-wrapper transition-transform duration-500">
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/adventure.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg"
+                        alt="Adventure">
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/couple.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg" alt="Couple">
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/foodie.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg" alt="Foodie">
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/games.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg" alt="Games">
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/shopping.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg"
+                        alt="Shopping">
+                </div>
+                <div class="flex-shrink-0 w-full h-96 relative">
+                    <img src="/images/party.jpg" class="w-full h-96 object-cover rounded-lg shadow-lg" alt="Party">
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 
             transition-all duration-700 
             hover:-translate-y-2 
             hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)] 
             hover:border-4 hover:border-transparent 
             hover:bg-gradient-to-r hover:from-pink-100 hover:to-purple-100">
-                <form th:action="@{/plans}" method="post" class="px-6 py-4 rounded-lg space-y-6"
-                    onsubmit="return validateMood()">
-                    <h2 class="text-2xl font-bold">Plan your next HangOut</h2>
-                    <p class="text-gray-600">Set your Vibe and Preferences below</p>
+            <form th:action="@{/plans}" method="post" class="px-6 py-4 rounded-lg space-y-6"
+                onsubmit="return validateMood()">
+                <h2 class="text-2xl font-bold">Plan your next HangOut</h2>
+                <p class="text-gray-600">Set your Vibe and Preferences below</p>
 
-                    <!-- Mood -->
-                    <fieldset>
-                        <legend class="font-semibold">Mood: </legend>
-                        <div class="flex flex-wrap gap-3 mt-2">
-                            <th:block th:each="m : ${moods}">
-                                <label>
-                                    <input type="checkbox" name="mood" th:value="${m.id}">
-                                    <span th:text="${m.name}"></span>
-                                </label>
-                            </th:block>
-                        </div>
-                    </fieldset>
-
-                    <!-- Location -->
-                    <div>
-                        <label for="locationDropdown" class="font-semibold">Location: <span
-                                style="color: red;">*</span></label>
-                        <div class="flex gap-3 mt-2">
-                            <select id="locationDropdown" name="location" class="border p-2 rounded w-full" required>
-                                <option value="">Select Area</option>
-                                <th:block th:each="loc : ${locations}">
-                                    <option th:value="${loc.id}" th:text="${loc.location_name}"></option>
-                                </th:block>
-                            </select>
-                            <p class="mt-4">OR</p>
-                            <button type="button" id="useLocationBtn" onclick="getLocation()"
-                                class="bg-blue-500 text-white px-4 py-2 rounded">
-                                Use My Location
-                            </button>
-                        </div>
+                <!-- Mood -->
+                <fieldset>
+                    <legend class="font-semibold">Mood: </legend>
+                    <div class="flex flex-wrap gap-3 mt-2">
+                        <th:block th:each="m : ${moods}">
+                            <label>
+                                <input type="checkbox" name="mood" th:value="${m.id}">
+                                <span th:text="${m.name}"></span>
+                            </label>
+                        </th:block>
                     </div>
+                </fieldset>
 
-                    <!-- Budget -->
-                    <div>
-                        <label for="budgetDropdown" class="font-semibold">Budget:</label>
-                        <select id="budgetDropdown" name="budget" class="border p-2 rounded w-full mt-2">
-                            <option value="">Select Budget</option>
-                            <th:block th:each="b : ${budgets}">
-                                <option th:value="${b.id}" th:text="${b.range}"></option>
+                <!-- Location -->
+                <div>
+                    <label for="locationDropdown" class="font-semibold">Location: </label>
+                    <div class="flex gap-3 mt-2">
+                        <select id="locationDropdown" name="location" class="border p-2 rounded w-full">
+                            <option value="">Select Area</option>
+                            <th:block th:each="loc : ${locations}">
+                                <option th:value="${loc.id}" th:text="${loc.location_name}"></option>
                             </th:block>
                         </select>
+                        <p class="mt-4">OR</p>
+                        <button type="button" id="useLocationBtn" onclick="getLocation()"
+                            class="bg-blue-500 text-white px-4 py-2 rounded">
+                            Use My Location
+                        </button>
                     </div>
-
-                    <!-- Submit -->
-                    <button type="submit" onclick="showPlaces()"
-                        class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
-                        🔍 Show Suitable Places
-                    </button>
-                </form>
-                <div>
-                    <input type="hidden" ></p>
                 </div>
-            </div>
+
+                <!-- Budget -->
+                <div>
+                    <label for="budgetDropdown" class="font-semibold">Budget:</label>
+                    <select id="budgetDropdown" name="budget" class="border p-2 rounded w-full mt-2">
+                        <option value="">Select Budget</option>
+                        <th:block th:each="b : ${budgets}">
+                            <option th:value="${b.id}" th:text="${b.range}"></option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude">
+
+                <!-- Submit -->
+                <button type="submit" onclick="showPlaces()"
+                    class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+                    🔍 Show Suitable Places
+                </button>
+            </form>
+            <!-- <div>
+                    
+                </div> -->
         </div>
     </div>
-    <div>
-        <section class="bg-gray-100 py-10" id="placesShown">
-            <div class="text-center">
-                <h1 class="text-3xl font-bold mb-10">Happy Visiting</h1>
-            </div>
 
-            <div class="relative w-full px-6">
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        <!-- Loop over places -->
-                        <div th:each="place : ${places}"
-                            class="swiper-slide flex-shrink-0  sm:w-1/2 md:w-1/3 lg:w-1/4">
+    <!-- Result Section -->
+    <section class="bg-gray-100 py-10" id="placesShown">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold mb-10">Happy Visiting</h1>
+        </div>
 
-                            <div
-                                class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center hover:shadow-2xl transition duration-300">
-
-                                <!-- Image -->
-                                <img th:src="@{'/place_images/' + ${place.images}}" alt="Place Image"
-                                    class="w-1/2 h-48 object-cover rounded-xl mb-4">
-
-                                <!-- Place Name -->
-                                <h3 class="font-bold text-gray-900 text-xl mb-2" th:text="${place.placeName}">
-                                    Place Name
-                                </h3>
-
-                                <!-- Description -->
-                                <p class="text-gray-600 text-sm mb-3" th:text="${place.description}">
-                                    Description
-                                </p>
-
-                                <!-- Address -->
-                                <p class="text-gray-500 text-sm mb-3" th:text="${place.address}">
-                                    Address
-                                </p>
-
-                                <!-- Budget -->
-                                <span class="bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full text-sm"
-                                    th:text="${place.budget.range}">
-                                    Budget
-                                </span>
-                            </div>
-
+        <div class="relative w-full px-6">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Loop over places -->
+                    <div th:each="place : ${places}" class="swiper-slide hover:scale-105">
+                        <div
+                            class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center hover:shadow-2xl transition duration-300">
+                            <img th:src="@{'/place_images/' + ${place.images}}" alt="Place Image"
+                                class="w-full h-48 object-cover rounded-xl mb-4">
+                            <h3 class="font-bold text-gray-900 text-xl mb-2" th:text="${place.placeName}">Place Name
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-3" th:text="${place.description}">Description</p>
+                            <p class="text-gray-500 text-sm mb-3" th:text="${place.address}">Address</p>
+                            <span class="bg-green-100 text-green-700 font-semibold px-3 py-1 rounded-full text-sm"
+                                th:text="${place.budget.range}">Budget</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
+                <!-- Navigation buttons -->
+                <!-- <div class="swiper-button-next hidden"></div>
+                <div class="swiper-button-prev hidden"></div> -->
+
+                <!-- Pagination dots -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
 
     </div>
     </div>
@@ -216,7 +228,30 @@
     <div th:insert="~{fragments/footer :: footer}"></div>
     <!-- FOOTER ENDS -->
 
-
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4 },
+            },
+            // navigation: {
+            //     nextEl: ".swiper-button-next",
+            //     prevEl: ".swiper-button-prev",
+            // },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+    </script>
 
 </body>
 

@@ -20,10 +20,10 @@
     <!-- NAVBAR ENDS -->
 
     <!-- MAIN STARTS -->
-    <div class="relative w-full h-auto md:h-screen overflow-hidden">
-        <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+    <div id="slider" class="overflow-hidden w-full mx-auto ">
+        <div class="flex slider-wrapper transition-transform duration-500 ease-in-out">
             <!-- Slide 1 -->
-            <div class="w-full h-full relative shrink-0 slide">
+            <div class="flex-shrink-0 w-full h-full relative">
                 <img src="/images/img1.jpg" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 flex items-center justify-center bg-black/40">
                     <h1 class="text-white text-4xl font-bold text-center">Just sit,sip & chill<br>We've got spots for
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- Slide 2 -->
-            <div class="w-full h-full relative shrink-0">
+            <div class="flex-shrink-0 w-full h-full relative">
                 <img src="/images/img2.png" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 flex items-center justify-center bg-black/40">
                     <h1 class="text-white text-4xl font-bold text-center">Coffee,Friendz & Conversation<br>Let's find
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <!-- Slider 3 -->
-            <div class="w-full h-full relative shrink-0">
+            <div class="flex-shrink-0 w-full h-full relative">
                 <img src="/images/img3.jpg" class="w-full h-full object-cover" />
                 <div class="absolute inset-0 flex items-center justify-center bg-black/40">
                     <h1 class="text-white text-4xl font-bold text-center">Sometimes, all you need is...<br>SOLO
@@ -154,13 +154,13 @@
             </p>
         </div>
 
-        <div class="relative w-full max-w-6xl mx-auto mt-10 px-6 overflow-hidden">
-            <!-- Outer Slider Wrapper -->
-            <div id="feedbackSlider" class="flex transition-transform duration-700 ease-in-out"
-                style="width: max-content;">
+        <!-- Outer Slider Wrapper -->
+        <div id="feedbackSlider" class="overflow-hidden w-full max-w-4xl mx-auto mt-12">
+            <div class="flex slider-wrapper transition-transform duration-500">
+
 
                 <!-- Feedback Cards Loop -->
-                <div th:each="feedback : ${feedbackList}" class="flex-shrink-0 w-72 px-4"> <!-- Fixed width card -->
+                <div th:each="feedback : ${feedbackList}" class="flex-shrink-0 w-1/2 px-4"> <!-- Fixed width card -->
                     <div class="bg-white shadow-xl rounded-2xl p-6 text-center h-full flex flex-col justify-between">
 
                         <!-- User name -->
@@ -176,37 +176,14 @@
 
                         <!-- Date -->
                         <p class="text-gray-400 text-sm"
-                            th:text="${#temporals.format(feedback.createdAt,'dd MMM yyyy')}">12 Sep 2025</p>
+                            th:text="${#temporals.format(feedback.createdAt,'dd MMM yyyy')}">12
+                            Sep 2025</p>
 
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-    <!-- FEEDBACK SECTION ENDS -->
-
-    <!-- <div id="feedback">
-        <div class="text-center">
-            <div class="">
-                <h1 class="text-4xl mt-8 font-bold">FEEDBACK</h1>
-                <p class="italic">From solo trip to squad hangouts - see what people loved about us</p>
-            </div>
-            <div>
-                <div class="card">
-                    <form action="">
-                        <input type="text" name="" id="" placeholder="">
-                    </form>
-                </div>
-            </div>
-            <div>
-                <div>
-
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- FEEDBACK SECTION ENDS -->
 
     <!-- SCRIPTS LINKS -->
 

@@ -1,6 +1,6 @@
 package com.hangouthub.hangouthub.controllers;
 
-import com.hangouthub.hangouthub.models.Locations;
+// import com.hangouthub.hangouthub.models.Locations;
 import com.hangouthub.hangouthub.models.Places;
 
 import java.util.*;
@@ -44,7 +44,7 @@ public class PlanController {
     @GetMapping
     public String showPlanPage(Model model) {
         model.addAttribute("moods", moodRepo.findAll());
-        model.addAttribute("places", Collections.emptyList()); 
+        model.addAttribute("places", Collections.emptyList());
         model.addAttribute("locations", locationRepo.findDistinctLocation());
         model.addAttribute("budgets", budgetRepo.findAll()); // Make sure you have a method to get budgets
         return "plan";
@@ -52,9 +52,9 @@ public class PlanController {
 
     @PostMapping
     public String searchByFilters(
-            @RequestParam(value = "mood", required = false) List<Long> mood,
-            @RequestParam("location") Long location,
-            @RequestParam(value = "budget", required = false) Long budget,
+            @RequestParam(value = "mood", required = false) List<Long> moodIds,
+            @RequestParam(value = "location", required = false) Long locationId,
+            @RequestParam(value = "budget", required = false) Long budgetId,
             @RequestParam(value = "latitude", required = false) Double latitude,
             @RequestParam(value = "longitude", required = false) Double longitude,
             Model model) {
@@ -62,12 +62,23 @@ public class PlanController {
         List<Places> filteredPlaces = new ArrayList<>();
 
         if (latitude != null && longitude != null) {
-            Optional<Locations> loc = locationRepo.findByLatitudeAndLongitude(latitude, longitude);
-            if (loc.isPresent()) {
-                filteredPlaces = placeRepo.findByLocations(loc.get());
-            }
+            // location ke 10 km ke andar fetch karo
+            filteredPlaces = placeRepo.findPlacesWithinRadius(latitude, longitude, 10);
         } else {
-            filteredPlaces = placeService.getPlacesByFilters(mood, location, budget);
+            filteredPlaces = placeService.getPlacesByFilters(moodIds, locationId, budgetId);
+        }
+
+        // Mood & budget filtering bhi apply karna ho to filteredPlaces par stream
+        // filter laga sakte ho
+        if (moodIds != null && !moodIds.isEmpty()) {
+            filteredPlaces = filteredPlaces.stream()
+                    .filter(p -> moodIds.contains(p.getMood().getId()))
+                    .toList();
+        }
+        if (budgetId != null) {
+            filteredPlaces = filteredPlaces.stream()
+                    .filter(p -> p.getBudget().getId().equals(budgetId))
+                    .toList();
         }
 
         model.addAttribute("places", filteredPlaces);

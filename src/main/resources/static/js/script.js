@@ -4,97 +4,74 @@ function toggleDropdown() {
   document.getElementById("dropdownMenu").classList.toggle("hidden");
 }
 
-//Default Home pg slider
-const homeSlider = document.getElementById("slider");
-let homeIndex = 0;
-const homeSlides = homeSlider.children;
+// Generic Slider
+function createSlider(containerId, interval = 3000, slidesToShow = 1) {
+    const slider = document.getElementById(containerId);
+    if (!slider) return;
 
-function showHomeSlide(index) {
-  const slideWidth = homeSlides[0].clientWidth;
-  homeSlider.style.transform = `translateX(-${index * slideWidth}px)`;
+    const wrapper = slider.querySelector(".slider-wrapper");
+    if (!wrapper) return;
+
+    const slides = wrapper.children;
+    let index = 0;
+
+    function showSlide() {
+        const offset = -(index * (100 / slidesToShow));
+        wrapper.style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide();
+    }
+
+    setInterval(nextSlide, interval);
 }
 
-function nextHomeSlide() {
-  homeIndex = (homeIndex + 1) % homeSlides.length;
-  showHomeSlide(homeIndex);
-}
+// ✅ Use generic slider for all
+createSlider("homeSlider", 4000, 1);       // login-home result slider
+createSlider("slider", 2000, 1);           // default home page image slider
+createSlider("feedbackSlider", 3000, 2);   // feedback cards slider
+// createSlider("planSlider", 2000, 1);
 
-// Start
-showHomeSlide(homeIndex);
-setInterval(nextHomeSlide, 3000);
+// For ImgSlider in plan 
+function planImgSlider(containerId, interval = 3000) {
+  const slider = document.getElementById(containerId);
+  const wrapper = slider.querySelector(".slider-wrapper");
+  const slides = wrapper.children;
+  let index = 0;
 
-// Plan Page image Slider
-//   var swiper = new Swiper(".mySwiper", {
-//   loop: true,
-//   autoplay: {
-//     delay: 1500,
-//     disableOnInteraction: false,
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//     clickable: true,
-//   }
-// });
-// function validateMood(){
-//   let checkboxes = document.querySelectorAll('input[name="mood"]');
-//   let isChecked = false;
-
-//   checkboxes.forEach(cb => {
-//     if (cb.checked){
-//       isChecked = true;
-//     }
-//   });
-
-//   if(!isChecked){
-//     alert("Please select at least one mood");
-//   }
-// }
-
-
-// Current Location Data fetching
-var uLat;
-var uLong;
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      uLat = position.coords.latitude;
-      uLong = position.coords.longitude;
-
-      document.getElementById("output").innerHTML = "Latitude=" + uLat + "Longitude=" + uLong;
-    }, (error) => {
-      alert("Error fetching location: " + error.message);
-    });
+  function showSlide() {
+    const offset = -(index * slider.clientWidth);
+    wrapper.style.transform = `translateX(${offset}px)`;
   }
-  else {
-    alert("Geolocation is not supported by this browser");
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide();
   }
+
+  // auto slide
+  setInterval(nextSlide, interval);
+
+  // resize handle (responsive)
+  window.addEventListener("resize", showSlide);
 }
+
+planImgSlider("planSlider", 3000);
 
 
 // Display Places
-function showPlaces() {
-  fetch('/searchByLocation', {
-    method: 'Post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ latitude: uLat, longitude: uLong })
-  })
-    .then(response => response.json())
-    .then(data => {
-      let html = '<table><tr><th>Name</th><th>Description</th><th>Budget</th></tr>';
-      data.forEach(place => {
-        html += `<tr>
-                  <td>${place.name}</td>
-                  <td>${place.description}</td>
-                  <td>${place.budget}</td>
-               </tr>`;
-      });
-      html += '</table>';
-      document.getElementById('results').innerHTML = html;
-    })
-    .catch(err => console.error(err));
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            document.getElementById("latitude").value = position.coords.latitude;
+            document.getElementById("longitude").value = position.coords.longitude;
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
-
 
 // Feedback form script
 window.onload = function () {
@@ -111,61 +88,124 @@ window.onload = function () {
 }
 
 // Feedback form star Rating
-const star = document.querySelectorAll('.star');
-let selectedStar = 0;
-star.forEach((star, i) => {
-  star.addEventListener("click", () => {
-    selectedStar = i;
-    updateStars();
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all star labels
+  const stars = document.querySelectorAll('.star');
+  const ratingInput = document.getElementById('ratingInput');
+  let selectedStar = 0; // initial value
+
+  // Update stars on page load (if any previous value exists)
+  updateStars(selectedStar);
+
+  // Add click event to each star
+  stars.forEach((star, i) => {
+    star.addEventListener("click", () => {
+      selectedStar = i;
+      updateStars(i);
+
+      // mark the corresponding hidden radio as checked
+      const radio = document.getElementById('star' + (i + 1));
+      if (radio) radio.checked = true;
+
+      // store rating for form submission
+      ratingInput.value = i + 1;
+    });
   });
+
+  // Function to visually update star colors
+  function updateStars(index) {
+    stars.forEach((star, i) => {
+      if (i <= index) {
+        star.classList.add("text-yellow-400");
+        star.classList.remove("text-gray-300");
+      } else {
+        star.classList.add("text-gray-300");
+        star.classList.remove("text-yellow-400");
+      }
+    });
+  }
 });
 
-function updateStars() {
-  star.forEach((star, i) => {
-    if (i <= selectedStar) {
-      star.classList.add("text-yellow-400");
-      star.classList.remove("text-gray-300");
-    } else {
-      star.classList.add("text-gray-300");
-      star.classList.remove("text-yellow-400");
-    }
-  });
-}
+
 
 // Slider for feedback 
-const feedbackSlider = document.getElementById("feedbackSlider");
-const feedbackSlides = feedbackSlider.children;
-let feedbackIndex = 0;
+// const feedbackSlider = document.getElementById("feedbackSlider");
+// const feedbackSlides = feedbackSlider.children;
+// let feedbackIndex = 0;
 
-function getSlidesPerView() {
-  if (window.innerWidth >= 1024) return 4; // large screen
-  if (window.innerWidth >= 768) return 3; // tablet
-  if (window.innerWidth >= 640) return 2; // mobile landscape
-  return 1; // small mobile
-}
+// function getSlidesPerView() {
+//   if (window.innerWidth >= 1024) return 4; // large screen
+//   if (window.innerWidth >= 768) return 3; // tablet
+//   if (window.innerWidth >= 640) return 2; // mobile landscape
+//   return 1; // small mobile
+// }
 
-function showFeedbackSlide(index) {
-  if (feedbackSlides.length === 0) return; // safety check
-  const slideWidth = feedbackSlides[0].clientWidth;
-  feedbackSlider.style.transform = `translateX(-${index * slideWidth}px)`;
-}
+// function showFeedbackSlide(index) {
+//   if (feedbackSlides.length === 0) return; // safety check
+//   const slideWidth = feedbackSlides[0].clientWidth;
+//   feedbackSlider.style.transform = `translateX(-${index * slideWidth}px)`;
+// }
 
-function nextFeedbackSlide() {
-  const slidesPerView = getSlidesPerView();
-  const totalSlides = feedbackSlides.length;
+// function nextFeedbackSlide() {
+//   const slidesPerView = getSlidesPerView();
+//   const totalSlides = feedbackSlides.length;
 
-  // Agar totalSlides slidesPerView se kam hai to slide karne ki zarurat nahi
-  if (totalSlides <= slidesPerView) return;
+//   // Agar totalSlides slidesPerView se kam hai to slide karne ki zarurat nahi
+//   if (totalSlides <= slidesPerView) return;
 
-  feedbackIndex = (feedbackIndex + 1) % (totalSlides - slidesPerView + 1);
-  showFeedbackSlide(feedbackIndex);
-}
+//   feedbackIndex = (feedbackIndex + 1) % (totalSlides - slidesPerView + 1);
+//   showFeedbackSlide(feedbackIndex);
+// }
 
-// Start
-showFeedbackSlide(feedbackIndex);
-setInterval(nextFeedbackSlide, 3000);
+// // Start
+// showFeedbackSlide(feedbackIndex);
+// setInterval(nextFeedbackSlide, 3000);
 
-// Resize par reset
-window.addEventListener("resize", () => {
-  showFeedbackSlide(feedbackIndex);
-});
+// // Resize par reset
+// window.addEventListener("resize", () => {
+//   showFeedbackSlide(feedbackIndex);
+// });
+
+
+// Generic Slider for all pages
+// function createSlider(sliderId, interval = 3000) {
+//     const sliderContainer = document.getElementById(sliderId);
+//     if (!sliderContainer) return;
+
+//     const slider = sliderContainer.querySelector("div.flex"); // inner flex div
+//     if (!slider) return;
+
+//     const slides = slider.children;
+//     let index = 0;
+
+//     function getSlidesPerView() {
+//         if (window.innerWidth >= 1024) return 4;
+//         if (window.innerWidth >= 768) return 3;
+//         if (window.innerWidth >= 640) return 2;
+//         return 1;
+//     }
+
+//     function showSlide(i) {
+//         if (slides.length === 0) return;
+//         const slideWidth = slides[0].clientWidth;
+//         slider.style.transform = `translateX(-${i * slideWidth}px)`;
+//     }
+
+//     function nextSlide() {
+//         const slidesPerView = getSlidesPerView();
+//         const totalSlides = slides.length;
+
+//         if (totalSlides <= slidesPerView) return;
+
+//         index = (index + 1) % (totalSlides - slidesPerView + 1);
+//         showSlide(index);
+//     }
+
+//     showSlide(index);
+//     const timer = setInterval(nextSlide, interval);
+
+//     window.addEventListener("resize", () => showSlide(index));
+
+//     return { slider, nextSlide, showSlide, timer };
+// }
+
