@@ -77,13 +77,9 @@ public class PlaceServiceImpl implements PlaceService {
         }else if(budget != null){
             return placeRepository.findByLocationsAndBudget(locations, budget);
         }else{
-            // agar budget optional hai to without budget bhi query chale
             return placeRepository.findByLocations(locations);
         }
 
-        // sreturn placeRepository.findByMoodAndLocationsAndBudget(mood, locations, budget);
-        // changed findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
-        // dekh ekta extra 's' ache naming e
     }
 
 }

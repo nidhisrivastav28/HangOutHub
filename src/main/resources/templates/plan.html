@@ -24,39 +24,7 @@
 
     <!-- MAIN STARTS -->
     <div class="flex flex-col md:flex-row h-auto md:h-screen justify-center items-center gap-8 px-8">
-        <!-- LEFT: Image -->
-        <!-- <div class="w-full flex justify-center overflow-hidden" id="planSlider">
-            <div class="flex slider-wrapper transition-transform duration-500">
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Adventure">
-                    <img src="/images/adventure.jpg" class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Couple">
-                    <img src="/images/couple.jpg" class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Foodie"><img src="/images/foodie.jpg"
-                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Games"><img src="/images/games.jpg"
-                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Shopping"><img src="/images/shopping.jpg"
-                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-                <div class="flex-shrink-0 w-full h-96 relative" alt="Party"><img src="/images/party.jpg"
-                        class="flex-shrink-0 w-96 h-96 object-cover rounded-lg shadow-lg">
-
-                </div>
-
-
-
-            </div>
-        </div> -->
-        <!-- Slider Container -->
+        <!-- LEFT-side: Image -->
         <div class="w-full md:w-1/2 flex justify-center overflow-hidden" id="planSlider">
             <!-- Wrapper -->
             <div class="flex slider-wrapper transition-transform duration-500">
@@ -83,7 +51,7 @@
             </div>
         </div>
 
-        <!-- RIGHT: Form -->
+        <!-- RIGHT-side: Form -->
         <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 
             transition-all duration-700 
             hover:-translate-y-2 
@@ -177,51 +145,12 @@
                     </div>
                 </div>
 
-                <!-- Navigation buttons -->
-                <!-- <div class="swiper-button-next hidden"></div>
-                <div class="swiper-button-prev hidden"></div> -->
-
                 <!-- Pagination dots -->
                 <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
-
-    <!-- TABLE OF PLACES -->
-    <!-- <div class="px-8 mt-8" th:if="${places != null and !places.isEmpty()}">
-        <table class="border-collapse border border-gray-300 w-full">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="border border-gray-300 px-4 py-2">Name</th>
-                    <th class="border border-gray-300 px-4 py-2">Address</th>
-                    <th class="border border-gray-300 px-4 py-2">Description</th>
-                    <th class="border border-gray-300 px-4 py-2">Image</th>
-                    <th class="border border-gray-300 px-4 py-2">Budget</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="place : ${places}">
-                    <td th:text="${place.placeName}" class="border border-gray-300 px-4 py-2"></td>
-                    <td th:text="${place.address}" class="border border-gray-300 px-4 py-2"></td>
-                    <td th:text="${place.description}" class="border border-gray-300 px-4 py-2"></td>
-                    <td class="border border-gray-300 px-4 py-2">
-                        <img th:src="@{/place_images/{img}(img=${place.images})}" alt="Place Image" width="100">
-
-                    </td>
-                    <td th:text="${place.budget.range}" class="border border-gray-300 px-4 py-2"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
-
-    </div>
     <!-- MAIN ENDS -->
 
     <!-- FOOTER STARTS -->

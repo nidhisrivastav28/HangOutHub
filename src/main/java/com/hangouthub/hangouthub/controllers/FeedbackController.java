@@ -31,20 +31,4 @@ public class FeedbackController {
         redirectAttributes.addFlashAttribute("feedbackSuccess", true);
         return "redirect:/feedback"; // 👈 home mapping pe bhej do
     }
-
-    // @PostMapping("/feedback")
-    // public String saveFeedback(@ModelAttribute Feedback feedback,
-    // RedirectAttributes redirectAttributes){
-    // feedbackService.saveFeedback((feedback));
-    // redirectAttributes.addFlashAttribute("feedbackSuccess", true);
-    // return "redirect:/feedback";
-    // }
-
-    // display feedback
-    // @GetMapping("/home")
-    // public String getAllFeedback(Model model){
-    // model.addAttribute("feedbackList", feedbackService.getAllFeedback());
-    // return "feedback-list";
-    // }
-
 }

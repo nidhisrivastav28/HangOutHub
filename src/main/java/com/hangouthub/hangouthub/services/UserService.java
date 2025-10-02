@@ -22,7 +22,7 @@ public class UserService {
         return null;
     }
 
-    // 🔹 Forgot password token generate
+    // Forgot password token generate
     public String generateResetToken(String email) {
         User user = userRepo.findByEmail(email);
         if (user == null) {
@@ -37,14 +37,14 @@ public class UserService {
         return token;
     }
 
-    // 🔹 Token se user find karna (reset ke waqt)
+    // Token will find the user (during rest)
     public User getUserByResetToken(String token) {
         return userRepo.findByResetToken(token);
     }
 
-    // 🔹 Password reset karna
+    // Password reset karna
     public void updatePassword(User user, String newPassword) {
-        user.setPswd(newPassword); // hashing lagana better hai
+        user.setPswd(newPassword); 
         user.setResetToken(null);
         user.setTokenExpiry(null);
         userRepo.save(user);

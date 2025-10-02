@@ -37,13 +37,4 @@ public class PageController {
         model.addAttribute("feedbackList", feedbackService.getAllFeedback());
         return "index"; // 👈 index.html = aapka home/landing page
     }
-
-    // Plan page
-    // @GetMapping("/plan")
-    // public String showPlanPage(Model model){
-    // List<Mood> moods = moodService.getAllMoods();
-    // model.addAttribute("moods", moods);
-    // return "plan";
-    // }
-
 }

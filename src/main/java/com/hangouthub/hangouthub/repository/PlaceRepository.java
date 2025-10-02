@@ -16,8 +16,6 @@ import com.hangouthub.hangouthub.models.Places;
 public interface PlaceRepository extends JpaRepository<Places, Long> {
     List<Places> findByLocations(Locations locations);
 
-    // same here findByLocation to findByLocations
-    // extra 's' for plural naming
     // multiple moods + location + budget
     @Query("SELECT p FROM Places p WHERE p.mood IN :moods AND p.locations = :locations AND p.budget = :budget")
     List<Places> findByMoodsInAndLocationsAndBudget(List<Mood> moods, Locations locations, Budget budget);
@@ -29,7 +27,6 @@ public interface PlaceRepository extends JpaRepository<Places, Long> {
     @Query("SELECT p FROM Places p WHERE p.locations = :locations AND p.budget = :budget")
     List<Places> findByLocationsAndBudget(Locations locations, Budget budget);
     // same here findByMoodAndLocationAndBudget to findByMoodAndLocationsAndBudget
-    // extra 's' for plural naming
 
     @Query("SELECT p FROM Places p WHERE p.mood = :mood")
     List<Places> findByMood(Mood mood);

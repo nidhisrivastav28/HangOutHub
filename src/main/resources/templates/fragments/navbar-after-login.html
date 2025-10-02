@@ -8,12 +8,11 @@
                 <ul class="flex space-x-6">
                     <li><a href="/home-login" class="hover:text-gray-200 space">Home</a></li>
                     <li><a href="/plans" class="hover:text-gray-200 space-x-6">Make a Plan</a></li>
-                    <!-- <li><a href="#" class="hover:text-gray-200 space-x-6">History</a></li> -->
-                    <!-- <li><a href="#" class="hover:text-gray-200 space-x-6">Nidhi</a></li> -->
+                    
                     <li class="relative">
                         <button onclick="toggleDropdown()"
                             class="flex items-center gap-1 hover:underline focus:outline-none">
-                            Nidhi
+                            <span th:text="${username}"></span>
                         </button>
 
                         <ul id="dropdownMenu"
