@@ -6,7 +6,7 @@ It solves the real-life problem of spending too much time deciding where to go w
 ---
 
 ## 🎥 Demo
-[Click here to watch the demo video](YourVideoLinkHere)
+[Click here to watch the demo video]([https://www.linkedin.com/posts/nidhi-srivastav-4aa298262_springboot-java-thymeleaf-activity-7379377743790206976-fXRG?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEB4ScIBWDmiTHS2kP1HDs7WhqW3Ah14wQs])
 
 ---
 
